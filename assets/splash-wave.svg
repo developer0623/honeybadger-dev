@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 412 509" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Splash Wave</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0,0 L484.675781,0 L484.675781,511.123047 L444.303033,511.123047 C421.005892,489.283366 401.898474,483.29906 386.980777,493.170129 C356.138988,513.5782 341.592202,549.058651 286.032859,531.833253 C239.871294,517.521505 258.439055,464.969938 235.864964,422.716398 C225.633828,403.566049 206.951635,386.531045 169.96198,376.130168 C147.051368,369.688084 136.218045,372.610363 82.8814651,352.257451 C74.0776108,348.897954 61.8266184,342.587158 51.3772513,335.240234 C40.6832156,327.721285 31.890625,319.202478 31.890625,319.202478 C31.9478418,317.891868 21.3176335,317.891868 0,319.202478 L0,0 Z" id="path-1"></path>
+        <filter x="-2.9%" y="-2.6%" width="105.8%" height="105.2%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="13.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.587126359   0 0 0 0 0.587126359   0 0 0 0 0.587126359  0 0 0 0.691215035 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="App-Landing-Page">
+            <g id="Splash-Wave" transform="translate(0.000000, 3.113281)">
+                <g transform="translate(-32.000000, -31.000000)">
+                    <path d="M31.890625,27.8867187 L443.890625,27.8867187 L443.890625,511.123047 C420.593485,489.283366 401.486066,483.29906 386.568369,493.170129 C355.726581,513.5782 341.179795,549.058651 285.620451,531.833253 C239.458887,517.521505 258.026647,464.969938 235.452557,422.716398 C225.221421,403.566049 206.539228,386.531045 169.549572,376.130168 C146.63896,369.688084 135.805637,372.610363 82.4690576,352.257451 C73.6652033,348.897954 61.4142109,342.587158 50.9648438,335.240234 C40.2708081,327.721285 31.4782175,319.202478 31.4782175,319.202478 C31.7531558,312.904732 31.890625,215.799479 31.890625,27.8867187 Z" id="Splashscreen-wave" fill="#FCD104"></path>
+                    <g id="Splashscreen-wave-shadow" style="mix-blend-mode: multiply;" fill="rgba(0,0,0,0.1)" fill-opacity="1">
+                        <use filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

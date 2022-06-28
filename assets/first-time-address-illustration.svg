@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="212px" height="249px" viewBox="0 0 212 249" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>First Time Address Illustration</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M109.419754,0.223893 L28.509136,50.01504 C28.509136,50.01504 28.509136,152.709285 109.419754,208.72434 C190.330369,152.7093 190.330369,50.01504 190.330369,50.01504 L109.419754,0.223893 Z" id="path-1"></path>
+        <filter x="-19.5%" y="-15.2%" width="138.9%" height="130.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0566269668 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Send" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Send---First-Time-Modal---Simplified-Illustration" transform="translate(-89.000000, -88.000000)">
+            <g id="First-Time-Address-Illustration" transform="translate(90.000000, 108.000000)">
+                <g id="Path" fill-rule="nonzero">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use stroke="#FFFFFF" stroke-width="3" fill="#FFD100" xlink:href="#path-1"></use>
+                </g>
+                <path d="M95.7233675,137.125836 C103.917021,166.353605 91.0589485,178.756623 57.1491488,174.33489 C23.2393491,169.913156 14.7359145,155.868956 31.6388452,132.20229 C50.8618601,116.467237 65.8900342,115.950141 76.7233675,130.651 C92.9733675,152.70229 67.0036165,192.10229 43.4733675,199.00229 C27.7865349,203.60229 13.2954124,210.775923 0,220.523189" id="Path-5" stroke="#1B1B1B" stroke-width="3" stroke-dasharray="7,3"></path>
+                <g id="Icon/-Send" transform="translate(73.000000, 58.000000)" fill="#000000">
+                    <path d="M62.5613496,0.0181068865 C63.4404358,-0.122037193 64.2875299,0.570393683 64.365636,1.4355836 L64.3673181,1.67533204 L59.3948607,62.3993164 C59.3092713,63.2982001 58.3944694,63.9374046 57.5252656,63.7739456 L57.2899979,63.7090572 L40.212452,57.2468891 L23.2281874,71.6552039 C22.4060845,72.3629633 21.0707944,71.9077411 20.7254304,70.9554719 L20.6639878,70.7271973 L20.6417955,70.4830947 L20.6404044,49.8353719 L0.929291598,42.3708161 C0.00418818773,41.9958782 -0.26344865,40.7801432 0.277010045,40.0064514 L0.444556468,39.8073681 L0.652852761,39.6359873 L49.8042689,8.07188737 L62.2831688,0.123429259 L62.5613496,0.0181068865 Z M23.7672301,51.0108703 L23.7672301,67.0975652 L36.8593429,55.9832283 L23.7672301,51.0108703 Z M60.8013056,6.9208659 L25.0544008,48.2190617 L56.4284517,60.0886563 L60.8013056,6.9208659 Z M55.9435587,7.77604095 L4.89754278,40.5695062 L21.9834113,47.0494409 L55.9435587,7.77604095 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
