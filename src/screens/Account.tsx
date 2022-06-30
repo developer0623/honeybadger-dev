@@ -7,7 +7,7 @@ import {
     ScrollView,
     Platform,
 } from 'react-native';
-import {Container, Button, Text, View, Header} from 'native-base';
+import {Box, Button, Text, View} from 'native-base';
 import * as Keychain from 'react-native-keychain';
 import Modal from 'react-native-modal';
 import {useSelector, useDispatch} from 'react-redux';
@@ -39,6 +39,7 @@ import RightArrow from '../../assets/right-arrow.svg';
 import Salmon from '../../assets/salmon.svg';
 import BgGradient from '../../assets/bg-gradient.svg';
 import NFTIcon from '../../assets/nft.svg';
+import XTZIcon from '../../assets/xtz.svg';
 
 const Account = ({navigation}: AccountProps) => {
     const dispatch = useDispatch();
@@ -57,7 +58,8 @@ const Account = ({navigation}: AccountProps) => {
     );
     const [isPendingModalVisible, setPendingModalVisible] = useState(false);
     const [refreshTimer, setRefreshTimer] = useState(undefined as any);
-    const [securityLevel, setSecurityLevel] = useState('3');
+    // const [securityLevel, setSecurityLevel] = useState('3');
+    const [securityLevel, setSecurityLevel] = useState('0');
     const changeTab = (newTab: number) => {
         if (newTab === tab) {
             return;
@@ -101,7 +103,7 @@ const Account = ({navigation}: AccountProps) => {
                 console.log("Keychain couldn't be accessed!", error);
             }
         }
-        load();
+        // load();
         navigation.addListener('didFocus', async (payload: any) => {
             try {
                 let data: any = await Keychain.getInternetCredentials(
@@ -174,7 +176,7 @@ const Account = ({navigation}: AccountProps) => {
     };
 
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <BgGradient style={styles.bg} />
             {Platform.OS === 'ios' && (
                 <BeaconMessages navigation={navigation} />
@@ -194,7 +196,7 @@ const Account = ({navigation}: AccountProps) => {
                                     TriggerTouchableComponent: () => (
                                         <Button
                                             style={styles.menuBtn}
-                                            transparent
+                                            variant="unstyled"
                                             onPress={() =>
                                                 setOpenSettings(true)
                                             }>
@@ -232,10 +234,13 @@ const Account = ({navigation}: AccountProps) => {
                     </View>
                     <View style={styles.amount}>
                         <View style={[styles.center, styles.row]}>
-                            <Text style={styles.typo2}>
+                            <Text fontSize="3xl" style={styles.typo2}>
                                 {formatAmount(balance)}
                             </Text>
-                            <CustomIcon name="XTZ" size={30} color="#1a1919" />
+                            {/* <CustomIcon name="XTZ" size={30} color="#1a1919" /> */}
+                            <View style={styles.xtzIcon}>
+                                <XTZIcon />
+                            </View>
                         </View>
                         {/*<View style={styles.center}>
                             <Text style={styles.typo3}>$0.00</Text>
@@ -244,7 +249,9 @@ const Account = ({navigation}: AccountProps) => {
                     <View style={styles.actions}>
                         <View style={styles.center}>
                             <Button
-                                transparent
+                                variant="unstyled"
+                                size="sm"
+                                style={styles.actionBtn}
                                 onPress={() => onPress('Receive')}>
                                 <View style={styles.actionCircle}>
                                     <Receive />
@@ -256,7 +263,9 @@ const Account = ({navigation}: AccountProps) => {
                         </View>
                         <View style={styles.center}>
                             <Button
-                                transparent
+                                variant="unstyled"
+                                size="sm"
+                                style={styles.actionBtn}
                                 onPress={() => onPress('SendAddress')}>
                                 <View style={styles.actionCircle}>
                                     <Send fill="#000000" />
@@ -268,7 +277,9 @@ const Account = ({navigation}: AccountProps) => {
                         </View>
                         <View style={styles.center}>
                             <Button
-                                transparent
+                                variant="unstyled"
+                                size="sm"
+                                style={styles.actionBtn}
                                 onPress={() => onPress('NFTGallery')}>
                                 <View style={styles.actionCircle}>
                                     <NFTIcon fill="#000000" />
@@ -375,7 +386,7 @@ const Account = ({navigation}: AccountProps) => {
                             ]}>
                             <Button
                                 style={styles.tabBtn}
-                                transparent
+                                variant="unstyled"
                                 onPress={() => changeTab(0)}>
                                 <Text
                                     style={[
@@ -397,7 +408,7 @@ const Account = ({navigation}: AccountProps) => {
                             ]}>
                             <Button
                                 style={styles.tabBtn}
-                                transparent
+                                variant="unstyled"
                                 onPress={() => changeTab(1)}>
                                 <Text
                                     style={[
@@ -432,7 +443,7 @@ const Account = ({navigation}: AccountProps) => {
                     </View>
                 </Modal>
             </ScrollView>
-        </Container>
+        </Box>
     );
 };
 
@@ -495,6 +506,16 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
     },
+    actionBtn: {
+        width: 50,
+        height: 50,
+    },
+    xtzIcon: {
+        height: 30,
+        width: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     icon: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -518,9 +539,10 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     actions: {
-        marginTop: 50,
+        marginTop: 30,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
+        marginHorizontal: 30
     },
     actionCircle: {
         alignItems: 'center',
@@ -586,8 +608,8 @@ const styles = StyleSheet.create({
     },
     typo2: {
         fontFamily: 'Roboto-Medium',
-        fontSize: 36,
-        fontWeight: '500',
+        // fontSize: 36,
+        // fontWeight: '500',
         color: 'rgb(26, 25, 25)',
     },
     typo3: {
