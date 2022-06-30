@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
 import {AccountSettingsProps} from './types';
-import { Container } from 'native-base';
+import { Box, Container, Center } from 'native-base';
 import { StyleSheet, Alert } from "react-native";
 import * as Keychain from 'react-native-keychain';
 
@@ -10,7 +10,7 @@ import PinCode from '../components/PinCode';
 import EnableBiometric from '../components/EnableBiometric';
 import {colors} from '../theme';
 
-const AccountSetup = ({ navigation, route }: AccountSettingsProps) => {
+const AccountSetup = ({ navigation }: AccountSettingsProps) => {
     const [pin, setPin] = useState('');
     const [confirmPin, setConfirmPin] = useState('');
     const [step, setStep] = useState('PIN');
@@ -62,18 +62,26 @@ const AccountSetup = ({ navigation, route }: AccountSettingsProps) => {
         navigation.replace('Account');
     }
 
+    const backFunc = () => {
+        if ( navigation.canGoBack() ) {
+            navigation.goBack()
+        }
+    }
+
     return (
-        <Container style={styles.containerWrapper}>
+        <Box style={styles.containerWrapper}>
+        {
+            back ?
+            <CustomHeader title="Enable App Lock" onBack={() => backFunc()} />
+            :
+            <CustomHeader title="Enable App Lock" />
+        }
+            <Center>
             {
-                back ?
-                <CustomHeader title="Enable App Lock" onBack={() => navigation.goBack()} />
-                :
-                <CustomHeader title="Enable App Lock" />
-            }
-            {/* {
                 step === "PIN" &&
-                <PinCode key="pin" text='Please Choose a 6 Digit Pin' handlePin={handlePin} isResetNeeded={true} isSkipAllowed={!navigation.getParam('fromSetting')} skipBiometric={skipBiometric} />
-            } */}
+                // <PinCode key="pin" text='Please Choose a 6 Digit Pin' handlePin={handlePin} isResetNeeded={true} isSkipAllowed={!navigation.getParam('fromSetting')} skipBiometric={skipBiometric} />
+                <PinCode key="pin" text='Please Choose a 6 Digit Pin' handlePin={handlePin} isResetNeeded={true} isSkipAllowed={true} skipBiometric={skipBiometric} />
+            }
             {
                 step === "CONFIRM_PIN" &&
                 <PinCode key="confirm-pin" text='Please Confirm Your Pin' handlePin={handleConfirmPin} isResetNeeded={true} isSkipAllowed={false} />
@@ -82,13 +90,15 @@ const AccountSetup = ({ navigation, route }: AccountSettingsProps) => {
                 step === "ENABLE_BIOMETRIC" &&
                 <EnableBiometric enableBiometric={setBiometric} skipBiometric={skipBiometric}/>
             }
-        </Container>
+            </Center>
+        </Box>
     )
 }
 
 const styles = StyleSheet.create({
     containerWrapper: {
         backgroundColor: colors.bg,
+        flex: 1,
     },
     container: {
         flex: 1,

@@ -1,5 +1,6 @@
 export interface NavigationProps {
     navigation: {
+        canGoBack: () => boolean;
         goBack: () => void;
         navigate: (target: string, params?: any) => void;
         replace: (target: string) => void;
