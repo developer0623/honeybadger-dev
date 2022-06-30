@@ -10,7 +10,7 @@ import PinCode from '../components/PinCode';
 import EnableBiometric from '../components/EnableBiometric';
 import {colors} from '../theme';
 
-const AccountSetup = ({ navigation }: AccountSettingsProps) => {
+const AccountSetup = ({ navigation, route }: AccountSettingsProps) => {
     const [pin, setPin] = useState('');
     const [confirmPin, setConfirmPin] = useState('');
     const [step, setStep] = useState('PIN');
@@ -70,10 +70,10 @@ const AccountSetup = ({ navigation }: AccountSettingsProps) => {
                 :
                 <CustomHeader title="Enable App Lock" />
             }
-            {
+            {/* {
                 step === "PIN" &&
                 <PinCode key="pin" text='Please Choose a 6 Digit Pin' handlePin={handlePin} isResetNeeded={true} isSkipAllowed={!navigation.getParam('fromSetting')} skipBiometric={skipBiometric} />
-            }
+            } */}
             {
                 step === "CONFIRM_PIN" &&
                 <PinCode key="confirm-pin" text='Please Confirm Your Pin' handlePin={handleConfirmPin} isResetNeeded={true} isSkipAllowed={false} />

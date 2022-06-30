@@ -30,7 +30,7 @@ const Loading = ({navigation}: LoadingProps) => {
                     //     JSON.stringify({...keys, termsDate}),
                     // );
                     // dispatch(setKeysAction(keys));
-                    // setReady(true);
+                    setReady(true);
                 }
             } catch (e) {
                 console.log('[ERROR]', e);
@@ -42,7 +42,7 @@ const Loading = ({navigation}: LoadingProps) => {
     useEffect(() => {
         if (ready && progress === 100) {
             setTimeout(() => {
-                // navigation.replace('AccountSetup');
+                navigation.replace('AccountSetup');
             }, 2000);
         }
 
