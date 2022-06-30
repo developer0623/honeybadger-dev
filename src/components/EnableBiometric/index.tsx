@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Container, Text, View, Button } from 'native-base';
+import { Box, Container, Text, View, Button } from 'native-base';
 import { StyleSheet } from 'react-native';
 import TouchID from "react-native-touch-id";
 
@@ -35,7 +35,7 @@ const EnableBiometric = (props: any) => {
     }, [])
 
     return (
-        <Container>
+        <Box>
             <View style={styles.mainContainer}>
                 <View style={styles.container}>
                     <View style={styles.icon}>
@@ -68,7 +68,7 @@ const EnableBiometric = (props: any) => {
                     </React.Fragment>
                 }
             </View>
-        </Container>
+        </Box>
     );
 }
 
@@ -80,6 +80,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
+        backgroundColor: 'white',
+        width: '110%'
     },
     container: {
         backgroundColor: '#FFF',
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 40,
         textAlign: 'center',
-        margin: 20,
+        margin: 40,
         marginTop: -180,
         borderRadius: 10,
         shadowColor: 'rgba(31, 31, 31, 0.77)',
@@ -130,6 +132,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: 0.85,
         textTransform: 'capitalize',
+        color: 'white'
     },
     icon: {
         width: 81,
