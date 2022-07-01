@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { StyleSheet,  ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Box, View, Text, Container } from 'native-base';
 import * as Keychain from 'react-native-keychain';
 
@@ -14,9 +14,9 @@ import SalmonBlack from '../../assets/salmon_black.svg';
 import DolphinBlack from '../../assets/dolphin_black.svg';
 import { colors } from '../theme';
 import CustomHeader from '../components/CustomHeader';
-import {SeedPhraseProps} from './types';
+import { SeedPhraseProps } from './types';
 
-const SecurityLevel = ({navigation}: SeedPhraseProps) => {
+const SecurityLevel = ({ navigation }: SeedPhraseProps) => {
     const [securityLevel, setSecurityLevel] = useState("0");
     const [data, setData] = useState({
         phraseBackedUpFirst: false,
@@ -28,13 +28,13 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
     useLayoutEffect(() => {
         const loadInitialState = async () => {
             try {
-                let data: any= await Keychain.getInternetCredentials('securitySetup');
+                let data: any = await Keychain.getInternetCredentials('securitySetup');
                 if (data) {
                     data = JSON.parse(data.password);
                     setData(data);
                     if (data.securitySetup && data.phraseBackedUp) {
-                        setSecurityLevel("2");    
-                    } else if(data.securitySetup || data.phraseBackedUp) {
+                        setSecurityLevel("2");
+                    } else if (data.securitySetup || data.phraseBackedUp) {
                         setSecurityLevel("1");
                     } else {
                         setSecurityLevel("0");
@@ -80,15 +80,15 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
             return "Your funds are not secure!";
         }
 
-        if (securityLevel === "1" && (!isAvailable || data.phraseBackedUpFirst) ) {
+        if (securityLevel === "1" && (!isAvailable || data.phraseBackedUpFirst)) {
             return "Recovery Phrase Backed Up";
-        } else if(securityLevel === "1") {
+        } else if (securityLevel === "1") {
             return "App Lock Enabled"
         }
-        
+
         if (securityLevel === "2" && (!isAvailable || data.phraseBackedUpFirst)) {
             return "App Lock Enabled";
-        } else if(securityLevel === "2") {
+        } else if (securityLevel === "2") {
             return "Recovery Phrase Backed Up"
         }
 
@@ -99,7 +99,7 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
         if (securityLevel === "0") {
             return "Your Security Level"
         }
-        
+
         if (securityLevel === "1") {
             return "Next Level";
         }
@@ -110,10 +110,10 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
     const handleNavigation = () => {
         if (securityLevel === '1' && (!isAvailable || data.phraseBackedUpFirst)) {
             navigation.navigate("AccountSetup")
-        } else if(securityLevel === '1' && (!isAvailable || !data.phraseBackedUpFirst)) {
-            navigation.navigate("RecoveryPhrase", {fromSetting: false});
-        } else if(securityLevel === '0') {
-            navigation.navigate("RecoveryPhrase", {fromSetting: false});
+        } else if (securityLevel === '1' && (!isAvailable || !data.phraseBackedUpFirst)) {
+            navigation.navigate("RecoveryPhrase", { fromSetting: false });
+        } else if (securityLevel === '0') {
+            navigation.navigate("RecoveryPhrase", { fromSetting: false });
         }
     }
 
@@ -124,13 +124,13 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
 
         if (level === "1" && (!isAvailable || data.phraseBackedUpFirst)) {
             return "Back Up Recovery Phrase";
-        } else if(level === "1") {
+        } else if (level === "1") {
             return "Enable App Lock"
         }
-        
+
         if (level === "2" && (!isAvailable || data.phraseBackedUpFirst)) {
             return "Enable App Lock";
-        } else if(level === "2") {
+        } else if (level === "2") {
             return "Back Up Recovery Phrase"
         }
 
@@ -138,64 +138,64 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
     }
 
     return (
-            <Box style={styles.container}>
-                <CustomHeader
-                    title="Security Level"
-                    onBack={() => navigation.goBack()} />
-                <View style={{alignItems:"center", paddingBottom:34}}>
-                    { securityLevel === "0" &&
-                        <GoldFishBlack style={{width:91,height:68, marginTop:34, marginBottom:24}} />
-                    }
-                    { securityLevel === "1" &&
-                        <SalmonBlack style={{width:91,height:68, marginTop:34, marginBottom:24}} />
-                    }
-                    { securityLevel === "2" &&
-                        <DolphinBlack style={{width:91,height:68, marginTop:34, marginBottom:24}} />
-                    }
-                    <Text style={styles.typo1}>
-                        { getSecurityLevelText() }
-                    </Text>
-                    <Text style={styles.typo5}>
-                        { getSubText() }
-                    </Text>
-                </View>
-                <ScrollView contentContainerStyle={{flexGrow: 1}}>
-                    <View style={styles.content}>
-                        { Number(securityLevel) < 2 &&
-                            <TouchableOpacity style={styles.security} onPress={()=> handleNavigation()}>
+        <Box style={styles.container}>
+            <CustomHeader
+                title="Security Level"
+                onBack={() => navigation.goBack()} />
+            <View style={{ alignItems: "center", paddingBottom: 34 }}>
+                {securityLevel === "0" &&
+                    <GoldFishBlack style={{ width: 91, height: 68, marginTop: 34, marginBottom: 24 }} />
+                }
+                {securityLevel === "1" &&
+                    <SalmonBlack style={{ width: 91, height: 68, marginTop: 34, marginBottom: 24 }} />
+                }
+                {securityLevel === "2" &&
+                    <DolphinBlack style={{ width: 91, height: 68, marginTop: 34, marginBottom: 24 }} />
+                }
+                <Text style={styles.typo1}>
+                    {getSecurityLevelText()}
+                </Text>
+                <Text style={styles.typo5}>
+                    {getSubText()}
+                </Text>
+            </View>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <View style={styles.content}>
+                    {Number(securityLevel) < 2 &&
+                        <TouchableOpacity style={styles.security} onPress={() => handleNavigation()}>
                             <View>
-                                { securityLevel === "0" &&
-                                    <Fish style={{width:47,height:35,marginRight:16}}/>
+                                {securityLevel === "0" &&
+                                    <Fish style={{ width: 47, height: 35, marginRight: 16 }} />
                                 }
-                                { securityLevel === "1" &&
-                                    <Salmon style={{width:47,height:35,marginRight:16}} />
+                                {securityLevel === "1" &&
+                                    <Salmon style={{ width: 47, height: 35, marginRight: 16 }} />
                                 }
-                                { securityLevel === "2" &&
-                                    <Dolphin style={{width:47,height:35,marginRight:16}} />
+                                {securityLevel === "2" &&
+                                    <Dolphin style={{ width: 47, height: 35, marginRight: 16 }} />
                                 }
                             </View>
                             <View style={{ width: '70%' }}>
-                                <Text style={styles.typo6}>{ getNextLevelText() }</Text>
-                                <Text style={styles.typo3}>{ getNextSecurityLevelText() }</Text>
+                                <Text style={styles.typo6}>{getNextLevelText()}</Text>
+                                <Text style={styles.typo3}>{getNextSecurityLevelText()}</Text>
                             </View>
                             {/* <View style={{marginLeft: 10}}>
                                 <Circle />
                             </View> */}
                             <View>
-                                { securityLevel !== "2" &&
-                                    <RightArrow style={{width:9,height:14,marginLeft:10}} />
+                                {securityLevel !== "2" &&
+                                    <RightArrow style={{ width: 9, height: 14, marginLeft: 10 }} />
                                 }
                             </View>
                         </TouchableOpacity>}
 
-                        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+                    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                         <View>
                             <Text style={styles.typo3}>
                                 Levels
                             </Text>
                             <View style={styles.levelMain}>
-                                <View style={{paddingTop:18}}>
-                                    { securityLevel === "0" &&
+                                <View style={{ paddingTop: 18 }}>
+                                    {securityLevel === "0" &&
                                         <React.Fragment>
                                             <View style={styles.dotsContainer}>
                                                 <Text style={styles.greyDots1}></Text>
@@ -208,11 +208,11 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
                                             </View>
                                             <View >
                                                 <Text style={styles.greyDots3}></Text>
-                                                <Flag style={{width:15,height:16,marginTop:-26,marginLeft:12}} />
+                                                <Flag style={{ width: 15, height: 16, marginTop: -26, marginLeft: 12 }} />
                                             </View>
                                         </React.Fragment>
                                     }
-                                    { securityLevel === "1" &&
+                                    {securityLevel === "1" &&
                                         <React.Fragment>
                                             <View style={styles.dotsContainer}>
                                                 <Text style={styles.greyDots2}></Text>
@@ -226,11 +226,11 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
                                             </View>
                                             <View >
                                                 <Text style={styles.greyDots3}></Text>
-                                                <Flag style={{width:15,height:16,marginTop:-26,marginLeft:12}} />
+                                                <Flag style={{ width: 15, height: 16, marginTop: -26, marginLeft: 12 }} />
                                             </View>
                                         </React.Fragment>
                                     }
-                                    {  securityLevel === "2" &&
+                                    {securityLevel === "2" &&
                                         <React.Fragment>
                                             <View style={styles.dotsContainer}>
                                                 <Text style={styles.greyDots2}></Text>
@@ -242,10 +242,10 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
                                                 <Text style={styles.orangeDot1}></Text>
                                                 <Text style={styles.orangeLine1}></Text>
                                             </View>
-                                            
+
                                             <View >
                                                 <Text style={styles.orangeDot3}></Text>
-                                                <Whiteflag style={{width:15,height:16,marginTop:-26,marginLeft:12}} />
+                                                <Whiteflag style={{ width: 15, height: 16, marginTop: -26, marginLeft: 12 }} />
                                             </View>
                                         </React.Fragment>
                                     }
@@ -253,7 +253,7 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
                                 <View>
                                     <View style={styles.levels}>
                                         <View>
-                                            <Fish style={{width:47,height:35,marginRight:16}} />
+                                            <Fish style={{ width: 47, height: 35, marginRight: 16 }} />
                                         </View>
                                         <View>
                                             <Text style={styles.typo3}>Level 1: Goldfish</Text>
@@ -262,7 +262,7 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
                                     </View>
                                     <View style={styles.levels}>
                                         <View>
-                                            <Salmon style={{width:47,height:35,marginRight:16}} />
+                                            <Salmon style={{ width: 47, height: 35, marginRight: 16 }} />
                                         </View>
                                         <View>
                                             <Text style={styles.typo3}>Level 2: Savvy Salmon</Text>
@@ -271,7 +271,7 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
                                     </View>
                                     <View style={styles.levels}>
                                         <View>
-                                            <Dolphin style={{width:47,height:42,marginRight:29}} />
+                                            <Dolphin style={{ width: 47, height: 42, marginRight: 29 }} />
                                         </View>
                                         <View>
                                             <Text style={styles.typo3}>Level 3: Discreet Dolphin</Text>
@@ -281,10 +281,10 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
                                 </View>
                             </View>
                         </View>
-                        </ScrollView>
-                    </View>
-                </ScrollView>
-            </Box>
+                    </ScrollView>
+                </View>
+            </ScrollView>
+        </Box>
     );
 };
 
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 26,
         borderTopRightRadius: 26,
         paddingHorizontal: 30,
-        paddingTop:22
+        paddingTop: 22
     },
     btn: {
         width: 256,
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         lineHeight: 24,
         color: '#3C3B3B',
-        marginBottom:5
+        marginBottom: 5
     },
     typo2: {
         fontFamily: 'Roboto-Medium',
@@ -349,13 +349,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     inputField: {
-        padding:13,
+        padding: 13,
         backgroundColor: 'rgba(0, 0, 0, 0.05)',
-        borderRadius:12,
+        borderRadius: 12,
         fontFamily: 'Roboto-Light',
         fontSize: 18,
         fontWeight: '300',
-        marginBottom:30,
+        marginBottom: 30,
         lineHeight: 24,
         color: '#4D4D4D'
     },
@@ -370,88 +370,88 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
         padding: 16,
-        marginTop:20,
-        marginBottom:20,
+        marginTop: 20,
+        marginBottom: 20,
         backgroundColor: '#fff',
         width: '100%',
         flexDirection: 'row',
-        alignItems:'center'
+        alignItems: 'center'
     },
     levelMain: {
         backgroundColor: '#fff',
         width: '100%',
         flexDirection: 'row',
-        alignItems:'center'
+        alignItems: 'center'
     },
     levels: {
-        marginTop:20,
+        marginTop: 20,
         backgroundColor: '#fff',
         width: '100%',
         flexDirection: 'row',
-        alignItems:'center'
+        alignItems: 'center'
     },
     dotsContainer: {
-        height:60,
-        marginLeft:6
+        height: 60,
+        marginLeft: 6
     },
     greyDots1: {
-        height:12,
-        width:12,
-        borderWidth:12,
+        height: 12,
+        width: 12,
+        borderWidth: 12,
         borderRadius: 12,
-        borderColor:'#E8E8E8',
-        marginRight:24,
+        borderColor: '#E8E8E8',
+        marginRight: 24,
     },
     greyDots2: {
-        height:12,
-        width:12,
-        borderWidth:12,
+        height: 12,
+        width: 12,
+        borderWidth: 12,
         borderRadius: 12,
-        borderColor:'#F5942A',
-        marginRight:24,
+        borderColor: '#F5942A',
+        marginRight: 24,
     },
     greyDots3: {
-        height:19,
-        width:19,
-        borderWidth:19,
+        height: 19,
+        width: 19,
+        borderWidth: 19,
         borderRadius: 19,
-        borderColor:'#E8E8E8',
-        marginRight:24,
-        marginLeft:0,
+        borderColor: '#E8E8E8',
+        marginRight: 24,
+        marginLeft: 0,
     },
     orangeDot3: {
-        height:19,
-        width:19,
-        borderWidth:19,
+        height: 19,
+        width: 19,
+        borderWidth: 19,
         borderRadius: 19,
-        borderColor:'#F5942A',
-        marginRight:24,
-        marginLeft:0,
+        borderColor: '#F5942A',
+        marginRight: 24,
+        marginLeft: 0,
     },
     orangeDot1: {
-        height:6,
-        width:6,
-        borderWidth:6,
+        height: 6,
+        width: 6,
+        borderWidth: 6,
         borderRadius: 6,
-        borderColor:'#F5942A',
-        marginTop:-18,
-        marginLeft:5.5,
+        borderColor: '#F5942A',
+        marginTop: -18,
+        marginLeft: 5.5,
     },
     greyLine1: {
-        width:3,
-        height:40,
+        width: 3,
+        height: 40,
         backgroundColor: '#E8E8E8',
-        position:'absolute',
-        left:11,
-        top:20,
+        position: 'absolute',
+        left: 11,
+        top: 20,
     },
     orangeLine1: {
-        width:3,
-        height:40,
+        width: 3,
+        height: 40,
         backgroundColor: '#F5942A',
-        position:'absolute',
-        left:11,
-        top:20,
+        position: 'absolute',
+        left: 11,
+        top: 20,
     }
 });
 
