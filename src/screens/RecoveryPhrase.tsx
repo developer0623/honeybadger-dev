@@ -69,11 +69,18 @@ const RecoveryPhrase = ({ navigation }: SeedPhraseProps) => {
                                     <Text style={styles.greyDots1} onPress={() => setStep(2)}>
                                     </Text>
                                 </View>
-                                <Button
+                                {/* <Button
                                     onPress={() => setStep(2)}
                                     style={styles.btnWhite}>
                                     <Text style={{ color: '#333' }}>Next</Text>
                                     <RightArrow></RightArrow>
+                                </Button> */}
+                                <Button 
+                                    onPress={() => setStep(2)} 
+                                    style={styles.btnWhite}
+                                    variant="Unstyled" 
+                                    endIcon={<RightArrow/>}>
+                                    <Text style={{ color: '#333', marginBottom: 2 }}>Next</Text>
                                 </Button>
                             </View>
                         </View>
@@ -106,7 +113,7 @@ const RecoveryPhrase = ({ navigation }: SeedPhraseProps) => {
                                 <Button
                                     onPress={() => navigation.navigate("SeedPhrase", { fromSetting: navigation.getParam('fromSetting') })}
                                     style={styles.btnBlack}>
-                                    <Text>Got It</Text>
+                                    <Text style={{color: 'white'}}>Got It</Text>
                                 </Button>
                             </View>
                         </View>
