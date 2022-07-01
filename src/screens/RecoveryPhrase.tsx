@@ -9,7 +9,7 @@ import { colors } from '../theme';
 import { SeedPhraseProps } from './types';
 import CustomHeader from '../components/CustomHeader';
 
-const RecoveryPhrase = ({ navigation }: SeedPhraseProps) => {
+const RecoveryPhrase = ({ navigation, route }: SeedPhraseProps) => {
     const [step, setStep] = useState(0);
 
     return (
@@ -34,7 +34,7 @@ const RecoveryPhrase = ({ navigation }: SeedPhraseProps) => {
                                     Anyone with your recovery phrase can steal your funds.
                                 </Text>
                                 <Button style={styles.btn} onPress={() => setStep(1)}>
-                                    <Text>I am ready</Text>
+                                    <Text style={{color: 'white'}}>I am ready</Text>
                                 </Button>
                                 <Text style={styles.typo6} onPress={() => navigation.navigate('Account')}>
                                     No, I’ll do it later
@@ -111,7 +111,7 @@ const RecoveryPhrase = ({ navigation }: SeedPhraseProps) => {
                                     </Text>
                                 </View>
                                 <Button
-                                    onPress={() => navigation.navigate("SeedPhrase", { fromSetting: navigation.getParam('fromSetting') })}
+                                    onPress={() => navigation.navigate("SeedPhrase", { fromSetting: route.params.fromSetting })}
                                     style={styles.btnBlack}>
                                     <Text style={{color: 'white'}}>Got It</Text>
                                 </Button>

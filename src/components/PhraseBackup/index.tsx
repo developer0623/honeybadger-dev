@@ -126,7 +126,7 @@ const PhraseBackup = (props: any) => {
                             })
                         }
                         <Button style={styles.btn} onPress={validatePhrase}>
-                            <Text>Submit</Text>
+                            <Text style={{color: 'white'}}>Submit</Text>
                         </Button>
                     </View>
                 </KeyboardAwareScrollView>

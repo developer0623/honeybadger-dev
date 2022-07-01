@@ -12,7 +12,7 @@ import { SeedPhraseProps } from './types';
 import { State } from '../reducers/types';
 import PhraseBackup from '../components/PhraseBackup';
 
-const SeedPhrase = ({ navigation }: SeedPhraseProps) => {
+const SeedPhrase = ({ navigation, route }: SeedPhraseProps) => {
     const seed = useSelector((state: State) => state.app.seed);
     const [copied, setCopied] = useState(false);
     const arr = seed.split(' ');
@@ -26,7 +26,7 @@ const SeedPhrase = ({ navigation }: SeedPhraseProps) => {
     };
 
     const handleBack = () => {
-        if (navigation.getParam('fromSetting')) {
+        if(route.params.fromSetting) {
             navigation.navigate("Settings")
         } else {
             navigation.navigate("SecurityLevel")
@@ -83,9 +83,9 @@ const SeedPhrase = ({ navigation }: SeedPhraseProps) => {
                                 </View>
                             </View>
                             {
-                                !navigation.getParam('fromSetting') &&
+                                !route.params.fromSetting &&
                                 <Button style={styles.btn} onPress={() => setStep(1)}>
-                                    <Text>Next</Text>
+                                    <Text style={{color: 'white'}}>Next</Text>
                                 </Button>
                             }
 
