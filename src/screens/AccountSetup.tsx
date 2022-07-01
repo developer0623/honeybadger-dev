@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {AccountSettingsProps} from './types';
 import { Box, Container, Center } from 'native-base';
 import { StyleSheet, Alert } from "react-native";
@@ -15,6 +15,13 @@ const AccountSetup = ({ navigation, route }: AccountSettingsProps) => {
     const [confirmPin, setConfirmPin] = useState('');
     const [step, setStep] = useState('PIN');
     const [back, setBack] = useState(true);
+    const [skip, setSkip] = useState(false);
+
+    useEffect(() => {
+        if(!!route.params && !!route.params.fromSetting && route.params.fromSetting)
+            setSkip(false)
+        else setSkip(true)
+    }, [])
 
     const handlePin = (pinCode: string) => {
         setPin(pinCode);
@@ -79,7 +86,7 @@ const AccountSetup = ({ navigation, route }: AccountSettingsProps) => {
             <Center>
             {
                 step === "PIN" &&
-                <PinCode key="pin" text='Please Choose a 6 Digit Pin' handlePin={handlePin} isResetNeeded={true} isSkipAllowed={!route.params.fromSetting} skipBiometric={skipBiometric} />
+                <PinCode key="pin" text='Please Choose a 6 Digit Pin' handlePin={handlePin} isResetNeeded={true} isSkipAllowed={skip} skipBiometric={skipBiometric} />
             }
             {
                 step === "CONFIRM_PIN" &&
