@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { NativeModules, StyleSheet, Linking, ScrollView } from 'react-native';
-import { Text, View, Button, Container, Switch } from 'native-base';
+import { Box, Text, View, Button, Container, Switch, HStack } from 'native-base';
 import DeviceInfo from 'react-native-device-info';
 import * as Keychain from 'react-native-keychain';
 
@@ -9,10 +9,10 @@ import CustomIcon from '../components/CustomIcon';
 import { colors } from '../theme';
 import config from '../config';
 import Success from '../../assets/success.svg';
+import RightArrow from '../../assets/right-arrow.svg';
+import { SettingsProps } from './types';
 
-import {SettingsProps} from './types';
-
-const Settings = ({navigation}: SettingsProps) => {
+const Settings = ({ navigation }: SettingsProps) => {
     const [securitySetup, setSecuritySetup] = useState(false);
     const [phraseBackedup, setPhraseBackedup] = useState(false);
     const [SecurityLevel, setSecurityLevel] = useState("0");
@@ -36,7 +36,7 @@ const Settings = ({navigation}: SettingsProps) => {
                 if (data) {
                     if (data.securitySetup && data.phraseBackedUp) {
                         setSecurityLevel("2");
-                    } else if(data.securitySetup || data.phraseBackedUp) {
+                    } else if (data.securitySetup || data.phraseBackedUp) {
                         setSecurityLevel("1")
                     } else {
                         setSecurityLevel("0");
@@ -80,7 +80,7 @@ const Settings = ({navigation}: SettingsProps) => {
 
     const toggleAppLock = async () => {
         if (securitySetup) {
-            let data: any= await Keychain.getInternetCredentials('securitySetup');
+            let data: any = await Keychain.getInternetCredentials('securitySetup');
             data = JSON.parse(data.password);
             const setup = {
                 securitySetup: false,
@@ -106,7 +106,7 @@ const Settings = ({navigation}: SettingsProps) => {
                 {
                     name: `Version: ${DeviceInfo.getVersion()}, build ${DeviceInfo.getBuildNumber()}`,
                 },
-                {name: `Network: ${config[0].displayNetwork}`},
+                { name: `Network: ${config[0].displayNetwork}` },
             ],
         },
         {
@@ -118,7 +118,7 @@ const Settings = ({navigation}: SettingsProps) => {
                 },
                 {
                     name: phraseBackedup ? 'Show Recovery Phrase' : 'Backup Recovery Phrase',
-                    action: () => navigation.navigate('RecoveryPhrase', {fromSetting: true}),
+                    action: () => navigation.navigate('RecoveryPhrase', { fromSetting: true }),
                 },
                 {
                     name: 'Enable App Lock',
@@ -185,65 +185,60 @@ const Settings = ({navigation}: SettingsProps) => {
     ];
 
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <CustomHeader title="Settings" onBack={() => navigation.goBack()} />
-            <ScrollView contentContainerStyle={{flexGrow: 1}}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={styles.content}>
-                    {list.map(({title, items}) => (
+                    {list.map(({ title, items }) => (
                         <View style={styles.section} key={title}>
                             <View style={styles.item}>
                                 <View style={styles.title}>
                                     <Text style={styles.titleText}>{title}</Text>
                                 </View>
                             </View>
-                            {items.map(({name, action, isSwitch}) => {
+                            {items.map(({ name, action, isSwitch }) => {
                                 const children = (
-                                    <>
+                                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                                         <View style={styles.posRel}>
                                             <Text style={styles.btnText}>
                                                 {name}
                                             </Text>
 
-                                            { name == 'Security Level' &&
+                                            {name == 'Security Level' &&
                                                 <React.Fragment>
                                                     <Text style={styles.subTitle}>{getSecurityLevelText(SecurityLevel)}</Text>
                                                 </React.Fragment>
                                             }
 
-                                            { name == 'Backup Recovery Phrase' &&
+                                            {name == 'Backup Recovery Phrase' &&
                                                 <Text style={styles.alertText}>Not backed up</Text>
                                             }
 
-                                            { name == 'Show Recovery Phrase' &&
+                                            {name == 'Show Recovery Phrase' &&
                                                 <Text style={styles.successText}>Backed up <Success style={styles.successIcon}></Success></Text>
                                             }
                                         </View>
 
-                                        { action && (
+                                        {action && (
                                             isSwitch ?
-                                            <Switch
-                                                trackColor={{ false: "#333333", true: "#0dbd8b" }}
-                                                thumbColor={true ? "#FFFFFF" : "#f4f3f4"}
-                                                ios_backgroundColor="#3e3e3e"
-                                                onValueChange={toggleAppLock}
-                                                value={securitySetup}
-                                            />
-                                            :
-                                            <CustomIcon
-                                                name="Caret-Left"
-                                                size={15}
-                                                color="#909090"
-                                            />
+                                                <Switch
+                                                    trackColor={{ false: "#333333", true: "#0dbd8b" }}
+                                                    thumbColor={true ? "#FFFFFF" : "#f4f3f4"}
+                                                    ios_backgroundColor="#3e3e3e"
+                                                    onValueChange={toggleAppLock}
+                                                    value={securitySetup}
+                                                />
+                                                 : <RightArrow />
 
                                         )}
-                                    </>
+                                    </View>
                                 );
 
                                 return (
                                     <View style={styles.item} key={name}>
                                         {action ? (
                                             <Button
-                                                transparent
+                                                variant="unstyled"
                                                 style={styles.btn}
                                                 onPress={action}>
                                                 {children}
@@ -260,7 +255,7 @@ const Settings = ({navigation}: SettingsProps) => {
                     ))}
                 </View>
             </ScrollView>
-        </Container>
+        </Box>
     );
 };
 
@@ -296,6 +291,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         alignItems: 'center',
         flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     titleText: {
         fontFamily: 'Roboto-Medium',
@@ -305,9 +301,9 @@ const styles = StyleSheet.create({
         letterSpacing: 0.75,
     },
     posRel: {
-        position:'relative',
-        display: 'flex',
-        flexDirection: 'row'
+        // position: 'relative',
+        // display: 'flex',
+        flexDirection: 'row',
     },
     subTitle: {
         marginLeft: 50,
@@ -316,23 +312,24 @@ const styles = StyleSheet.create({
         color: '#909090',
         fontFamily: 'Roboto-Medium',
         fontWeight: '500',
-
+        paddingBottom: 4
     },
     alertText: {
         marginLeft: 30,
-        fontSize:14,
-        top:2,
+        fontSize: 14,
+        top: 2,
         color: '#FF0000',
     },
     successText: {
         marginLeft: 30,
-        fontSize:14,
-        top:1,
+        fontSize: 14,
+        top: 1,
         color: '#259C90',
+        paddingBottom: 5
     },
     successIcon: {
-        marginLeft:2,
-        marginTop:-3
+        marginLeft: 2,
+        marginTop: -3
     },
     btnText: {
         fontFamily: 'Roboto-Light',
