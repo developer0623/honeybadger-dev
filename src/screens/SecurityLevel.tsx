@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { StyleSheet,  ScrollView, TouchableOpacity } from 'react-native';
-import { View, Text, Container } from 'native-base';
+import { Box, View, Text, Container } from 'native-base';
 import * as Keychain from 'react-native-keychain';
 
 import Fish from '../../assets/fish.svg';
@@ -138,7 +138,7 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
     }
 
     return (
-            <Container style={styles.container}>
+            <Box style={styles.container}>
                 <CustomHeader
                     title="Security Level"
                     onBack={() => navigation.goBack()} />
@@ -284,7 +284,7 @@ const SecurityLevel = ({navigation}: SeedPhraseProps) => {
                         </ScrollView>
                     </View>
                 </ScrollView>
-            </Container>
+            </Box>
     );
 };
 

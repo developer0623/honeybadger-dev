@@ -539,7 +539,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     actions: {
-        marginTop: 30,
+        marginTop: 40,
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginHorizontal: 30
@@ -609,7 +609,7 @@ const styles = StyleSheet.create({
     typo2: {
         fontFamily: 'Roboto-Medium',
         // fontSize: 36,
-        // fontWeight: '500',
+        fontWeight: '500',
         color: 'rgb(26, 25, 25)',
     },
     typo3: {
