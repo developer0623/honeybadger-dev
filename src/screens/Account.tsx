@@ -179,7 +179,7 @@ const Account = ({navigation}: AccountProps) => {
         <Box style={styles.container}>
             <BgGradient style={styles.bg} />
             {Platform.OS === 'ios' && (
-                <BeaconMessages navigation={navigation} />
+                <BeaconMessages navigation={navigation} route={undefined} />
             )}
             <ScrollView contentContainerStyle={{flexGrow: 1}}>
                 <View>

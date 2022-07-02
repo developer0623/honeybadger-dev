@@ -1,15 +1,15 @@
 import * as React from 'react';
-import {useState, useEffect} from 'react';
-import {StyleSheet, ScrollView, Linking} from 'react-native';
-import {Container, View, Text, Button} from 'native-base';
-import {useDispatch, useSelector} from 'react-redux';
+import { useState, useEffect } from 'react';
+import { StyleSheet, ScrollView, Linking } from 'react-native';
+import { Box, Container, View, Text, Button } from 'native-base';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CustomHeader from '../components/CustomHeader';
 import NFTStandardView from '../components/NFTStandardView';
 import NFTTileView from '../components/NFTTileView';
 
-import {NavigationProps} from '../screens/types';
-import {State} from '../reducers/types';
+import { NavigationProps } from '../screens/types';
+import { State } from '../reducers/types';
 
 import {
     setNFTCollectionLoading,
@@ -18,18 +18,18 @@ import {
     setNFTGalleryView,
     setNFTSendDetails,
 } from '../reducers/nft/actions';
-import {getNFTCollection, getNFTObjectDetails} from '../reducers/nft/thunks';
+import { getNFTCollection, getNFTObjectDetails } from '../reducers/nft/thunks';
 
 import config from '../config';
 
 import RowsViewIcon from '../../assets/rows-view.svg';
 import TilesViewIcon from '../../assets/tiles-view.svg';
 
-import {truncateHash} from '../utils/general';
+import { truncateHash } from '../utils/general';
 
-const NFTGallery = ({navigation}: NavigationProps) => {
+const NFTGallery = ({ navigation }: NavigationProps) => {
     const dispatch = useDispatch();
-    const {collectionLoading, collected, minted, galleryView} = useSelector(
+    const { collectionLoading, collected, minted, galleryView } = useSelector(
         (state: State) => state.nft,
     );
     const publicKeyHash = useSelector(
@@ -89,7 +89,7 @@ const NFTGallery = ({navigation}: NavigationProps) => {
     }, [dispatch, publicKeyHash]);
 
     return (
-        <Container>
+        <Box>
             <CustomHeader
                 title="NFT Gallery"
                 onBack={() => navigation.goBack()}
@@ -112,7 +112,7 @@ const NFTGallery = ({navigation}: NavigationProps) => {
                     ]}>
                     <Button
                         style={s.tabBtn}
-                        transparent
+                        variant="unstyled"
                         onPress={() => changeTab(0)}>
                         <Text
                             style={[
@@ -130,7 +130,7 @@ const NFTGallery = ({navigation}: NavigationProps) => {
                     ]}>
                     <Button
                         style={s.tabBtn}
-                        transparent
+                        variant="unstyled"
                         onPress={() => changeTab(1)}>
                         <Text
                             style={[
@@ -191,7 +191,7 @@ const NFTGallery = ({navigation}: NavigationProps) => {
                         ),
                     )}
             </ScrollView>
-        </Container>
+        </Box>
     );
 };
 
@@ -260,7 +260,7 @@ function RightCustomComponent({
     isTiles: boolean;
 }) {
     return (
-        <Button transparent onPress={onPress}>
+        <Button variant="unstyled" onPress={onPress}>
             {isTiles && <TilesViewIcon />}
             {!isTiles && <RowsViewIcon />}
         </Button>

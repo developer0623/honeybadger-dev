@@ -333,6 +333,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: 0.85,
         textTransform: 'capitalize',
+        color: 'white'
     },
     typo4: {
         fontFamily: 'Roboto-Regular',
