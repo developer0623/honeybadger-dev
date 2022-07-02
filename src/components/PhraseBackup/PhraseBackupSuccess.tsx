@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Center, Container, Text, View, Button } from 'native-base';
+import { Box, Container, Text, View, Button } from 'native-base';
 import { StyleSheet } from 'react-native';
 
 import Checkmark from '../../../assets/checkmark.svg';
@@ -31,20 +31,20 @@ const styles = StyleSheet.create({
     mainContainer: {
         borderTopWidth: 200,
         borderTopColor: '#FAD049',
-        flex: 1,
+        // flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
     },
     container: {
         backgroundColor: '#FFF',
-        flex: .8,
+        // flex: .8,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 40,
         textAlign: 'center',
         margin: 20,
-        marginTop: -180,
+        // marginTop: -180,
         borderRadius: 10,
         shadowColor: 'rgba(31, 31, 31, 0.77)',
         shadowOffset: { width: 0, height: 1 },
