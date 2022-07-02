@@ -29,13 +29,13 @@ const SendAmount = ({navigation}: SendAmountProps) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const onChange = (value: string) => {
-        if (value.length === 1 && value.charAt(0) === '.') {
+        if (!!value && value.length === 1 && value.charAt(0) === '.') {
             setAmount('0.');
             setIsError(false);
             return;
         }
 
-        if (value.indexOf('.') > -1 && value.split('.')[1].length > 3) {
+        if (!!value && value.indexOf('.') > -1 && value.split('.')[1].length > 3) {
             setIsError(false);
             return;
         }

@@ -137,7 +137,7 @@ const Account = ({navigation}: AccountProps) => {
             togglePendingModal();
         } else if (value === 'SendAddress' || value === 'Receive') {
             setModalNext(value);
-            toggleModal();
+            toggleModal(value);
         } else {
             navigation.navigate(value);
         }
@@ -150,9 +150,9 @@ const Account = ({navigation}: AccountProps) => {
         navigation.navigate(item.screen);
     };
 
-    const toggleModal = () => {
-        if (modalNext) {
-            navigation.navigate(modalNext);
+    const toggleModal = (value: string) => {
+        if (value) {
+            navigation.navigate(value);
         }
     };
 
