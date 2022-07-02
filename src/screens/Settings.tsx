@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { NativeModules, StyleSheet, Linking, ScrollView } from 'react-native';
-import { Box, Text, View, Button, Container, Switch, HStack } from 'native-base';
+import { Box, Text, View, Button, Container, Switch, HStack, ChevronRightIcon, CheckCircleIcon } from 'native-base';
 import DeviceInfo from 'react-native-device-info';
 import * as Keychain from 'react-native-keychain';
 
@@ -198,16 +198,14 @@ const Settings = ({ navigation }: SettingsProps) => {
                             </View>
                             {items.map(({ name, action, isSwitch }) => {
                                 const children = (
-                                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                                        <View style={styles.posRel}>
+                                    <HStack style={styles.lineOut}>
+                                        <HStack>
                                             <Text style={styles.btnText}>
                                                 {name}
                                             </Text>
 
                                             {name == 'Security Level' &&
-                                                <React.Fragment>
-                                                    <Text style={styles.subTitle}>{getSecurityLevelText(SecurityLevel)}</Text>
-                                                </React.Fragment>
+                                                <Text style={styles.subTitle}>{getSecurityLevelText(SecurityLevel)}</Text>
                                             }
 
                                             {name == 'Backup Recovery Phrase' &&
@@ -215,12 +213,16 @@ const Settings = ({ navigation }: SettingsProps) => {
                                             }
 
                                             {name == 'Show Recovery Phrase' &&
-                                                <Text style={styles.successText}>Backed up <Success style={styles.successIcon}></Success></Text>
+                                                <HStack style={{alignItems: 'center'}}>
+                                                    <Text style={styles.successText}>Backed up</Text>
+                                                    <CheckCircleIcon />
+                                                </HStack>
                                             }
-                                        </View>
+                                        </HStack>
 
-                                        {action && (
-                                            isSwitch ?
+                                        <HStack>
+                                            {action && (
+                                                isSwitch ?
                                                 <Switch
                                                     trackColor={{ false: "#333333", true: "#0dbd8b" }}
                                                     thumbColor={true ? "#FFFFFF" : "#f4f3f4"}
@@ -228,14 +230,15 @@ const Settings = ({ navigation }: SettingsProps) => {
                                                     onValueChange={toggleAppLock}
                                                     value={securitySetup}
                                                 />
-                                                 : <RightArrow />
+                                                    : <ChevronRightIcon />
 
-                                        )}
-                                    </View>
+                                            )}
+                                        </HStack>
+                                    </HStack>
                                 );
 
                                 return (
-                                    <View style={styles.item} key={name}>
+                                    <HStack style={styles.item} key={name}>
                                         {action ? (
                                             <Button
                                                 variant="unstyled"
@@ -248,7 +251,7 @@ const Settings = ({ navigation }: SettingsProps) => {
                                                 {children}
                                             </View>
                                         )}
-                                    </View>
+                                    </HStack>
                                 );
                             })}
                         </View>
@@ -283,15 +286,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    lineOut: {
+        width: 330, 
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        justifyContent: 'space-between'
+    },
     btn: {
-        width: '100%',
         height: 'auto',
         paddingTop: 21,
         paddingBottom: 18,
         paddingHorizontal: 10,
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'flex-start'
     },
     titleText: {
         fontFamily: 'Roboto-Medium',
@@ -306,30 +314,30 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     subTitle: {
-        marginLeft: 50,
+        marginLeft: 30,
         fontSize: 14,
-        top: 2,
+        // top: 2,
         color: '#909090',
         fontFamily: 'Roboto-Medium',
         fontWeight: '500',
-        paddingBottom: 4
+        // paddingBottom: 4
     },
     alertText: {
         marginLeft: 30,
         fontSize: 14,
-        top: 2,
+        // top: 2,
         color: '#FF0000',
     },
     successText: {
         marginLeft: 30,
         fontSize: 14,
-        top: 1,
+        // top: 1,
         color: '#259C90',
-        paddingBottom: 5
+        // paddingBottom: 5
     },
     successIcon: {
         marginLeft: 2,
-        marginTop: -3
+        marginTop: -1,
     },
     btnText: {
         fontFamily: 'Roboto-Light',
