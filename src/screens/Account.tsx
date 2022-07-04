@@ -58,8 +58,7 @@ const Account = ({navigation}: AccountProps) => {
     );
     const [isPendingModalVisible, setPendingModalVisible] = useState(false);
     const [refreshTimer, setRefreshTimer] = useState(undefined as any);
-    // const [securityLevel, setSecurityLevel] = useState('3');
-    const [securityLevel, setSecurityLevel] = useState('0');
+    const [securityLevel, setSecurityLevel] = useState('3');
     const changeTab = (newTab: number) => {
         if (newTab === tab) {
             return;
@@ -76,6 +75,7 @@ const Account = ({navigation}: AccountProps) => {
                 );
                 if (data) {
                     data = JSON.parse(data.password);
+                    console.log("data==>", data)
                     if (data.securitySetup && data.phraseBackedUp) {
                         setSecurityLevel('2');
                     } else if (data.securitySetup || data.phraseBackedUp) {
@@ -103,7 +103,7 @@ const Account = ({navigation}: AccountProps) => {
                 console.log("Keychain couldn't be accessed!", error);
             }
         }
-        // load();
+        load();
         navigation.addListener('didFocus', async (payload: any) => {
             try {
                 let data: any = await Keychain.getInternetCredentials(
