@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 26,
         borderTopRightRadius: 26,
         paddingHorizontal: 40,
+        paddingBottom: 70,
     },
     title: {
         marginTop: 25,
