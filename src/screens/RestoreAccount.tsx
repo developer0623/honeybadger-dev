@@ -134,7 +134,7 @@ const RestoreAccount = ({navigation}: AccountProps) => {
                         <Text style={styles.modalText}>Error</Text>
                         <Text style={styles.typo2}>{errorText}</Text>
                         <Button style={styles.modalBtn} onPress={closeErrorModal}>
-                            <Text>Close</Text>
+                            <Text style={{color: 'white'}}>Close</Text>
                         </Button>
                     </View>
                 </View>

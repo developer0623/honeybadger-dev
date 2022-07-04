@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect, useRef, Ref} from 'react';
-import {StyleSheet, TextInput, ScrollView, KeyboardAvoidingView, Platform, SafeAreaView} from 'react-native';
-import {View, Text, Container, Button} from 'native-base';
-import {useSelector} from 'react-redux';
+import React, { useState, useEffect, useRef, Ref } from 'react';
+import { StyleSheet, TextInput, ScrollView, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
+import { View, Text, Container, Button } from 'native-base';
+import { useSelector } from 'react-redux';
 import * as Keychain from 'react-native-keychain';
 
-import {colors} from '../../theme';
+import { colors } from '../../theme';
 import CustomHeader from '../CustomHeader';
 
 
@@ -20,24 +20,23 @@ const SeedInput = (props: any) => {
         if ([12, 15, 18, 21, 24].includes(seedsArray.length)) {
             return false;
         }
-        
+
         return true;
     }
 
     return (
-        <ScrollView contentContainerStyle={{flexGrow: 1}} keyboardShouldPersistTaps={'handled'}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps={'handled'}>
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.areaContainer}>
                     <View style={styles.content}>
                         <Text style={styles.typo1}>
-                        Enter your recovery phrase in the correct order to restore your account.
+                            Enter your recovery phrase in the correct order to restore your account.
                         </Text>
                         <React.Fragment>
-                            
-                        <TextInput style={styles.inputField} multiline={true} numberOfLines={6} autoFocus={true} onChangeText={(text): any => setSeeds(text) }/>
-                        </React.Fragment> 
-                        <Button style={ isBtnDisabled() ? styles.btnDisabled : styles.btn} onPress={handleSeeds} disabled={isBtnDisabled()}>
-                            <Text>Continue</Text>
+                            <TextInput style={styles.inputField} multiline={true} numberOfLines={6} autoFocus={true} onChangeText={(text): any => setSeeds(text)} />
+                        </React.Fragment>
+                        <Button style={isBtnDisabled() ? styles.btnDisabled : styles.btn} onPress={handleSeeds} disabled={isBtnDisabled()}>
+                            <Text style={{ color: 'white' }}>Continue</Text>
                         </Button>
                     </View>
                 </SafeAreaView>
@@ -87,25 +86,25 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
         lineHeight: 26,
-        paddingTop:30,
-        paddingBottom:30,
+        paddingTop: 30,
+        paddingBottom: 30,
     },
     typo2: {
         fontFamily: 'Roboto-Regular',
         fontSize: 16,
         fontWeight: '400',
         lineHeight: 18,
-        color:'#343434',
-        marginBottom:10,
-        textAlign:'center'
+        color: '#343434',
+        marginBottom: 10,
+        textAlign: 'center'
     },
     inputField: {
         backgroundColor: 'rgba(0, 0, 0, 0.05)',
-        borderRadius:12,
+        borderRadius: 12,
         fontFamily: 'Roboto-Light',
         fontSize: 18,
         fontWeight: '300',
-        marginBottom:30,
+        marginBottom: 30,
         lineHeight: 24,
         color: '#4D4D4D',
         textAlignVertical: 'top',
