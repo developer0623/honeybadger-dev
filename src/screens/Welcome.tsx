@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, StyleSheet } from 'react-native';
-import { Container, Text, Button, View, Box } from 'native-base';
+import { Container, Text, Button, View, Box, Center } from 'native-base';
 import * as Keychain from 'react-native-keychain';
 import { useDispatch } from 'react-redux';
 
@@ -13,6 +13,8 @@ import PinCode from '../components/PinCode';
 import Logo from '../../assets/galleon-logo.svg';
 import Cryptonomic from '../../assets/cryptonomic-icon.svg';
 import Wave from '../../assets/splash-wave-shadow.svg';
+
+import { colors } from '../theme';
 
 import { WelcomeProps } from './types';
 
@@ -180,9 +182,9 @@ const Welcome = ({ navigation }: WelcomeProps) => {
                 </SafeContainer>
             </Box>
             :
-            <Container>
+            <Center style={styles.containerWrapper}>
                 <PinCode key="pin" text='Please Enter Your Pin' handlePin={handlePin} isResetNeeded={false} isSkipAllowed={false} allowChange={true} redirectToResetPin={redirectToResetPin} />
-            </Container>
+            </Center>
     );
 };
 
@@ -267,7 +269,10 @@ const styles = StyleSheet.create({
         letterSpacing: 0.85,
         textTransform: 'capitalize',
         color: '#4b4b4b'
-    }
+    },
+    containerWrapper: {
+        backgroundColor: colors.bg,
+    },
 });
 
 export default Welcome;
