@@ -23,13 +23,13 @@ const Loading = ({navigation}: LoadingProps) => {
         async function save() {
             try {
                 if (termsDate) {
-                    // const keys = await KeyStoreUtils.generateIdentity();
-                    // await Keychain.resetGenericPassword();
-                    // await Keychain.setGenericPassword(
-                    //     'newwallet',
-                    //     JSON.stringify({...keys, termsDate}),
-                    // );
-                    // dispatch(setKeysAction(keys));
+                    const keys = await KeyStoreUtils.generateIdentity();
+                    await Keychain.resetGenericPassword();
+                    await Keychain.setGenericPassword(
+                        'newwallet',
+                        JSON.stringify({...keys, termsDate}),
+                    );
+                    dispatch(setKeysAction(keys));
                     setReady(true);
                 }
             } catch (e) {

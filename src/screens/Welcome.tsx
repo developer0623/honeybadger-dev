@@ -43,23 +43,23 @@ const Welcome = ({ navigation }: WelcomeProps) => {
             }
 
             try {
-                // const keychainData: any = await Keychain.getInternetCredentials('securitySetup'); // TODO: use GenericPassword
-                // securityConfig = JSON.parse(keychainData.password);
+                const keychainData: any = await Keychain.getInternetCredentials('securitySetup'); // TODO: use GenericPassword
+                securityConfig = JSON.parse(keychainData.password);
 
-                // if (securityConfig.hasOwnProperty('securitySetup') && securityConfig.securitySetup) {
-                //     setIsPinEnabled(true);
-                // }
+                if (securityConfig.hasOwnProperty('securitySetup') && securityConfig.securitySetup) {
+                    setIsPinEnabled(true);
+                }
 
-                // await TouchID.isSupported().then((biometryType: any) => {
-                //     console.log(biometryType)
-                //     if (biometryType === 'FaceID' || biometryType === 'TouchID') {
-                //         setIsBiometricSupported(true);
-                //     }
-                //     setIsBiometricEnabled(securityConfig.isBiometric);
-                // }).catch((error) => {
-                //     setIsBiometricSupported(false);
-                //     setIsBiometricEnabled(false);
-                // });
+                await TouchID.isSupported().then((biometryType: any) => {
+                    console.log(biometryType)
+                    if (biometryType === 'FaceID' || biometryType === 'TouchID') {
+                        setIsBiometricSupported(true);
+                    }
+                    setIsBiometricEnabled(securityConfig.isBiometric);
+                }).catch((error) => {
+                    setIsBiometricSupported(false);
+                    setIsBiometricEnabled(false);
+                });
             } catch (error) {
                 console.log('Security configuration not found in the Keychain', error);
             }
