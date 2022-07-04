@@ -40,8 +40,7 @@ const Receive = ({navigation}: ReceiveProps) => {
                     Share your account address to receive XTZ or Tezos tokens
                 </Text>
                 <View style={styles.qr}>
-                    {/* <QRCode value={address} size={199} /> */}
-                    <QRCode value="temp address" size={199} />
+                    <QRCode value={address} size={199} />
                 </View>
                 <View style={styles.address}>
                     {addressParts.map((item, i) => (
