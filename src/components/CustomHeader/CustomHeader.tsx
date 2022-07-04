@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 // import {Header, Button, Left, Right, Title, Body} from 'native-base';
-import { HStack, StatusBar, Box, IconButton, Icon, Text, Button } from 'native-base';
+import { HStack, IconButton, Text, ArrowBackIcon, CloseIcon } from 'native-base';
 
 import CustomIcon from '../CustomIcon';
 
@@ -60,25 +60,27 @@ const CustomHeader = ({
             <HStack px="1" py="3" justifyContent="space-between" alignItems="center" w="100%">
                 <HStack alignItems="center" style={styles.button}>
                     {onBack && (
-                     <Button variant="unstyled" onPress={onBack}>
-                         <CustomIcon
-                            name={leftIconName}
-                             size={backIconStyles.size}
-                             color={backIconStyles.color}
-                         />
-                     </Button>
+                        <IconButton 
+                            icon={<ArrowBackIcon/>}
+                            _icon={{
+                                color: "black",
+                                size: "md"
+                            }}
+                            onPress={onBack}
+                        />
                     )}
                 </HStack>
                 <HStack>{title && <Text style={styles.title}>{title}</Text>}</HStack>
                 <HStack style={styles.button}>
                     {onClose && !RightComponent && (
-                        <Button variant="unstyled" onPress={onClose}>
-                            <CustomIcon
-                                name={rightIconName}
-                                size={closeIconStyles.size}
-                                color={closeIconStyles.color}
-                            />
-                        </Button>
+                        <IconButton 
+                            icon={<CloseIcon/>}
+                            _icon={{
+                                color: "black",
+                                size: "md"
+                            }}
+                            onPress={onBack}
+                        />
                     )}
                     {RightComponent && !onClose && RightComponent}
                 </HStack>

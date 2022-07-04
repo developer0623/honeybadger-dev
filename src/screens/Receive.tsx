@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Clipboard} from 'react-native';
 import Share from 'react-native-share';
 import {useSelector} from 'react-redux';
-import {Container, View, Text} from 'native-base';
+import {Box, Container, View, Text, CheckIcon} from 'native-base';
 import QRCode from 'react-native-qrcode-svg';
 
 import CustomButton from '../components/CustomButton';
@@ -33,14 +33,15 @@ const Receive = ({navigation}: ReceiveProps) => {
         }
     };
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <CustomHeader title="Receive" onBack={() => navigation.goBack()} />
             <View style={styles.main}>
                 <Text style={styles.title}>
                     Share your account address to receive XTZ or Tezos tokens
                 </Text>
                 <View style={styles.qr}>
-                    <QRCode value={address} size={199} />
+                    {/* <QRCode value={address} size={199} /> */}
+                    <QRCode value="temp address" size={199} />
                 </View>
                 <View style={styles.address}>
                     {addressParts.map((item, i) => (
@@ -63,7 +64,8 @@ const Receive = ({navigation}: ReceiveProps) => {
                             isVisible={copied}
                             content={
                                 <View style={styles.tooltipContent}>
-                                    <CustomIcon name="Checkmark" size={16} />
+                                    {/* <CustomIcon name="Checkmark" size={16} /> */}
+                                    <CheckIcon />
                                     <Text style={styles.tooltipText}>
                                         Copied to the clipboard
                                     </Text>
@@ -87,7 +89,7 @@ const Receive = ({navigation}: ReceiveProps) => {
                     </View>
                 </View>
             </View>
-        </Container>
+        </Box>
     );
 };
 

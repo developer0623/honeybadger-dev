@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { NativeModules, StyleSheet, Linking, ScrollView } from 'react-native';
-import { Text, View, Button, Container, Switch } from 'native-base';
+import { Box, Text, View, Button, Container, Switch, HStack, ChevronRightIcon, CheckCircleIcon } from 'native-base';
 import DeviceInfo from 'react-native-device-info';
 import * as Keychain from 'react-native-keychain';
 
@@ -9,10 +9,10 @@ import CustomIcon from '../components/CustomIcon';
 import { colors } from '../theme';
 import config from '../config';
 import Success from '../../assets/success.svg';
+import RightArrow from '../../assets/right-arrow.svg';
+import { SettingsProps } from './types';
 
-import {SettingsProps} from './types';
-
-const Settings = ({navigation}: SettingsProps) => {
+const Settings = ({ navigation }: SettingsProps) => {
     const [securitySetup, setSecuritySetup] = useState(false);
     const [phraseBackedup, setPhraseBackedup] = useState(false);
     const [SecurityLevel, setSecurityLevel] = useState("0");
@@ -36,7 +36,7 @@ const Settings = ({navigation}: SettingsProps) => {
                 if (data) {
                     if (data.securitySetup && data.phraseBackedUp) {
                         setSecurityLevel("2");
-                    } else if(data.securitySetup || data.phraseBackedUp) {
+                    } else if (data.securitySetup || data.phraseBackedUp) {
                         setSecurityLevel("1")
                     } else {
                         setSecurityLevel("0");
@@ -80,7 +80,7 @@ const Settings = ({navigation}: SettingsProps) => {
 
     const toggleAppLock = async () => {
         if (securitySetup) {
-            let data: any= await Keychain.getInternetCredentials('securitySetup');
+            let data: any = await Keychain.getInternetCredentials('securitySetup');
             data = JSON.parse(data.password);
             const setup = {
                 securitySetup: false,
@@ -106,7 +106,7 @@ const Settings = ({navigation}: SettingsProps) => {
                 {
                     name: `Version: ${DeviceInfo.getVersion()}, build ${DeviceInfo.getBuildNumber()}`,
                 },
-                {name: `Network: ${config[0].displayNetwork}`},
+                { name: `Network: ${config[0].displayNetwork}` },
             ],
         },
         {
@@ -118,7 +118,7 @@ const Settings = ({navigation}: SettingsProps) => {
                 },
                 {
                     name: phraseBackedup ? 'Show Recovery Phrase' : 'Backup Recovery Phrase',
-                    action: () => navigation.navigate('RecoveryPhrase', {fromSetting: true}),
+                    action: () => navigation.navigate('RecoveryPhrase', { fromSetting: true }),
                 },
                 {
                     name: 'Enable App Lock',
@@ -185,65 +185,63 @@ const Settings = ({navigation}: SettingsProps) => {
     ];
 
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <CustomHeader title="Settings" onBack={() => navigation.goBack()} />
-            <ScrollView contentContainerStyle={{flexGrow: 1}}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={styles.content}>
-                    {list.map(({title, items}) => (
+                    {list.map(({ title, items }) => (
                         <View style={styles.section} key={title}>
                             <View style={styles.item}>
                                 <View style={styles.title}>
                                     <Text style={styles.titleText}>{title}</Text>
                                 </View>
                             </View>
-                            {items.map(({name, action, isSwitch}) => {
+                            {items.map(({ name, action, isSwitch }) => {
                                 const children = (
-                                    <>
-                                        <View style={styles.posRel}>
+                                    <HStack style={styles.lineOut}>
+                                        <HStack>
                                             <Text style={styles.btnText}>
                                                 {name}
                                             </Text>
 
-                                            { name == 'Security Level' &&
-                                                <React.Fragment>
-                                                    <Text style={styles.subTitle}>{getSecurityLevelText(SecurityLevel)}</Text>
-                                                </React.Fragment>
+                                            {name == 'Security Level' &&
+                                                <Text style={styles.subTitle}>{getSecurityLevelText(SecurityLevel)}</Text>
                                             }
 
-                                            { name == 'Backup Recovery Phrase' &&
+                                            {name == 'Backup Recovery Phrase' &&
                                                 <Text style={styles.alertText}>Not backed up</Text>
                                             }
 
-                                            { name == 'Show Recovery Phrase' &&
-                                                <Text style={styles.successText}>Backed up <Success style={styles.successIcon}></Success></Text>
+                                            {name == 'Show Recovery Phrase' &&
+                                                <HStack style={{alignItems: 'center'}}>
+                                                    <Text style={styles.successText}>Backed up</Text>
+                                                    <CheckCircleIcon />
+                                                </HStack>
                                             }
-                                        </View>
+                                        </HStack>
 
-                                        { action && (
-                                            isSwitch ?
-                                            <Switch
-                                                trackColor={{ false: "#333333", true: "#0dbd8b" }}
-                                                thumbColor={true ? "#FFFFFF" : "#f4f3f4"}
-                                                ios_backgroundColor="#3e3e3e"
-                                                onValueChange={toggleAppLock}
-                                                value={securitySetup}
-                                            />
-                                            :
-                                            <CustomIcon
-                                                name="Caret-Left"
-                                                size={15}
-                                                color="#909090"
-                                            />
+                                        <HStack>
+                                            {action && (
+                                                isSwitch ?
+                                                <Switch
+                                                    trackColor={{ false: "#333333", true: "#0dbd8b" }}
+                                                    thumbColor={true ? "#FFFFFF" : "#f4f3f4"}
+                                                    ios_backgroundColor="#3e3e3e"
+                                                    onValueChange={toggleAppLock}
+                                                    value={securitySetup}
+                                                />
+                                                    : <ChevronRightIcon />
 
-                                        )}
-                                    </>
+                                            )}
+                                        </HStack>
+                                    </HStack>
                                 );
 
                                 return (
-                                    <View style={styles.item} key={name}>
+                                    <HStack style={styles.item} key={name}>
                                         {action ? (
                                             <Button
-                                                transparent
+                                                variant="unstyled"
                                                 style={styles.btn}
                                                 onPress={action}>
                                                 {children}
@@ -253,14 +251,14 @@ const Settings = ({navigation}: SettingsProps) => {
                                                 {children}
                                             </View>
                                         )}
-                                    </View>
+                                    </HStack>
                                 );
                             })}
                         </View>
                     ))}
                 </View>
             </ScrollView>
-        </Container>
+        </Box>
     );
 };
 
@@ -288,14 +286,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    lineOut: {
+        width: 330, 
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        justifyContent: 'space-between'
+    },
     btn: {
-        width: '100%',
         height: 'auto',
         paddingTop: 21,
         paddingBottom: 18,
         paddingHorizontal: 10,
         alignItems: 'center',
         flexDirection: 'row',
+        justifyContent: 'flex-start'
     },
     titleText: {
         fontFamily: 'Roboto-Medium',
@@ -305,34 +309,35 @@ const styles = StyleSheet.create({
         letterSpacing: 0.75,
     },
     posRel: {
-        position:'relative',
-        display: 'flex',
-        flexDirection: 'row'
+        // position: 'relative',
+        // display: 'flex',
+        flexDirection: 'row',
     },
     subTitle: {
-        marginLeft: 50,
+        marginLeft: 30,
         fontSize: 14,
-        top: 2,
+        // top: 2,
         color: '#909090',
         fontFamily: 'Roboto-Medium',
         fontWeight: '500',
-
+        // paddingBottom: 4
     },
     alertText: {
         marginLeft: 30,
-        fontSize:14,
-        top:2,
+        fontSize: 14,
+        // top: 2,
         color: '#FF0000',
     },
     successText: {
         marginLeft: 30,
-        fontSize:14,
-        top:1,
+        fontSize: 14,
+        // top: 1,
         color: '#259C90',
+        // paddingBottom: 5
     },
     successIcon: {
-        marginLeft:2,
-        marginTop:-3
+        marginLeft: 2,
+        marginTop: -1,
     },
     btnText: {
         fontFamily: 'Roboto-Light',

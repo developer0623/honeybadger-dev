@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
-import {StyleSheet, Clipboard, ScrollView} from 'react-native';
-import {View, Text, Container, Button} from 'native-base';
-import {useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { StyleSheet, Clipboard, ScrollView } from 'react-native';
+import { Box, View, Text, Container, Button } from 'native-base';
+import { useSelector } from 'react-redux';
 
 import CustomHeader from '../components/CustomHeader';
 import CustomTooltip from '../components/CustomTooltip';
 import CustomIcon from '../components/CustomIcon';
-import {colors} from '../theme';
+import { colors } from '../theme';
 
-import {SeedPhraseProps} from './types';
-import {State} from '../reducers/types';
+import { SeedPhraseProps } from './types';
+import { State } from '../reducers/types';
 import PhraseBackup from '../components/PhraseBackup';
 
-const SeedPhrase = ({navigation}: SeedPhraseProps) => {
+const SeedPhrase = ({ navigation, route }: SeedPhraseProps) => {
     const seed = useSelector((state: State) => state.app.seed);
     const [copied, setCopied] = useState(false);
     const arr = seed.split(' ');
@@ -26,7 +26,7 @@ const SeedPhrase = ({navigation}: SeedPhraseProps) => {
     };
 
     const handleBack = () => {
-        if(navigation.getParam('fromSetting')) {
+        if(route.params.fromSetting) {
             navigation.navigate("Settings")
         } else {
             navigation.navigate("SecurityLevel")
@@ -34,72 +34,70 @@ const SeedPhrase = ({navigation}: SeedPhraseProps) => {
     }
 
     return (
-        <Container style={styles.container}>
-            
-            {step === 0 && 
-            <React.Fragment>
-                <CustomHeader
-                    title="Account Mnemonic"
-                    onBack={() => handleBack()}
-                />
-                <ScrollView contentContainerStyle={{flexGrow: 1}}>
-                    <View style={styles.content}>
-                        <View style={styles.title}>
-                            <Text style={styles.typo1}>
-                                Carefully write down your recovery phrase and keep it in a safe place.
-                            </Text>
-                            <Text style={[styles.subtitle, styles.typo2]}>
-                                You will need it to access your funds in case your phone is lost or stolen. If anyone else gets access to your recovery phrase they will be able to steal your funds.
-                            </Text>
-                        </View>
-                        <View style={styles.dividerHorizontal} />
-                        <View style={styles.seed}>
-                            <View style={styles.column}>
-                                {cols[0].map((value, index) => (
-                                    <View style={styles.row} key={index}>
-                                        <View style={styles.seedNumberWrapper}>
-                                            <Text style={styles.seedNumber}>{`${
-                                                index + 1
-                                            }`}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.seedText}>{value}</Text>
-                                        </View>
-                                    </View>
-                                ))}
+        <Box style={styles.container}>
+
+            {step === 0 &&
+                <React.Fragment>
+                    <CustomHeader
+                        title="Account Mnemonic"
+                        onBack={() => handleBack()}
+                    />
+                    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                        <View style={styles.content}>
+                            <View style={styles.title}>
+                                <Text style={styles.typo1}>
+                                    Carefully write down your recovery phrase and keep it in a safe place.
+                                </Text>
+                                <Text style={[styles.subtitle, styles.typo2]}>
+                                    You will need it to access your funds in case your phone is lost or stolen. If anyone else gets access to your recovery phrase they will be able to steal your funds.
+                                </Text>
                             </View>
-                            <View style={styles.dividerVertical} />
-                            <View style={styles.column}>
-                                {cols[1].map((value, index) => (
-                                    <View style={styles.row} key={index}>
-                                        <View style={styles.seedNumberWrapper}>
-                                            <Text style={styles.seedNumber}>{`${
-                                                half + 1 + index
-                                            }`}</Text>
+                            <View style={styles.dividerHorizontal} />
+                            <View style={styles.seed}>
+                                <View style={styles.column}>
+                                    {cols[0].map((value, index) => (
+                                        <View style={styles.row} key={index}>
+                                            <View style={styles.seedNumberWrapper}>
+                                                <Text style={styles.seedNumber}>{`${index + 1
+                                                    }`}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.seedText}>{value}</Text>
+                                            </View>
                                         </View>
-                                        <View>
-                                            <Text style={styles.seedText}>{value}</Text>
+                                    ))}
+                                </View>
+                                <View style={styles.dividerVertical} />
+                                <View style={styles.column}>
+                                    {cols[1].map((value, index) => (
+                                        <View style={styles.row} key={index}>
+                                            <View style={styles.seedNumberWrapper}>
+                                                <Text style={styles.seedNumber}>{`${half + 1 + index
+                                                    }`}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.seedText}>{value}</Text>
+                                            </View>
                                         </View>
-                                    </View>
-                                ))}
+                                    ))}
+                                </View>
                             </View>
+                            {
+                                !route.params.fromSetting &&
+                                <Button style={styles.btn} onPress={() => setStep(1)}>
+                                    <Text style={{color: 'white'}}>Next</Text>
+                                </Button>
+                            }
+
                         </View>
-                        {
-                            !navigation.getParam('fromSetting') &&
-                            <Button style={styles.btn} onPress={()=> setStep(1)}>
-                                <Text>Next</Text>
-                            </Button>
-                        }
-                       
-                    </View>
-                </ScrollView>
-            </React.Fragment>
+                    </ScrollView>
+                </React.Fragment>
             }
             {
                 step === 1 &&
-                <PhraseBackup navigation={navigation}/>
+                <PhraseBackup navigation={navigation} />
             }
-        </Container>
+        </Box>
     );
 };
 

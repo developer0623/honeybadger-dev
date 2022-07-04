@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Text, View, Button } from 'native-base';
+import { Box, Container, Text, View, Button } from 'native-base';
 import { StyleSheet } from 'react-native';
 
 import Checkmark from '../../../assets/checkmark.svg';
@@ -7,7 +7,7 @@ import Checkmark from '../../../assets/checkmark.svg';
 const PhraseBackupSuccess = (props: any) => {
 
     return (
-        <Container>
+        <Box>
             <View style={styles.mainContainer}>
                 <View style={styles.container}>
                     <View style={styles.icon}>
@@ -23,7 +23,7 @@ const PhraseBackupSuccess = (props: any) => {
                     </Button>
                     {/* <Text style={{marginBottom: 40}} onPress={() => props.navigation.navigate('SeedPhrase')}>Back up Recovery Phrase Again</Text> */}
             </View>
-        </Container>
+        </Box>
     );
 }
 
@@ -31,20 +31,20 @@ const styles = StyleSheet.create({
     mainContainer: {
         borderTopWidth: 200,
         borderTopColor: '#FAD049',
-        flex: 1,
+        // flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
     },
     container: {
         backgroundColor: '#FFF',
-        flex: .8,
+        // flex: .8,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 40,
         textAlign: 'center',
         margin: 20,
-        marginTop: -180,
+        // marginTop: -180,
         borderRadius: 10,
         shadowColor: 'rgba(31, 31, 31, 0.77)',
         shadowOffset: { width: 0, height: 1 },
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: 0.85,
         textTransform: 'capitalize',
+        color: 'white'
     },
     icon: {
         width: 81,

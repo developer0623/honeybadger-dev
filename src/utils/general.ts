@@ -20,7 +20,7 @@ export const truncateHash = (value: string) => {
 export const splitHash = (value: string) => {
     let result: string[] = [];
 
-    value.split('').forEach((e, i) => {
+    !!value && value.split('').forEach((e, i) => {
         if (i % 6 === 0) {
             result.push(value.slice(i, i + 6));
         }
