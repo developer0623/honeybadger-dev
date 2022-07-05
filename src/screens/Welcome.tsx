@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { StatusBar, Alert, StyleSheet } from 'react-native';
 import { Container, Text, Button, View, Box, Center } from 'native-base';
 import * as Keychain from 'react-native-keychain';
 import { useDispatch } from 'react-redux';
@@ -134,6 +134,7 @@ const Welcome = ({ navigation }: WelcomeProps) => {
     return (
         !isPin ?
             <Box>
+                <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
                 <View style={styles.waveBg} />
                 <SafeContainer>
                     <View style={styles.wave}>

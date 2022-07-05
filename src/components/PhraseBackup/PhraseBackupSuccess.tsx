@@ -18,10 +18,10 @@ const PhraseBackupSuccess = (props: any) => {
                         Please keep your recovery phrase safe. We recommend that you store it in at least two places in case of fire, flood, or any other chances that it gets destroyed.
                     </Text>
                 </View>
-                    <Button style={styles.btn} onPress={() => props.navigation.navigate('Account')}>
-                        <Text style={styles.typo3}>Back to wallet</Text>
-                    </Button>
-                    {/* <Text style={{marginBottom: 40}} onPress={() => props.navigation.navigate('SeedPhrase')}>Back up Recovery Phrase Again</Text> */}
+                <Button style={styles.btn} onPress={() => props.navigation.navigate('Account')}>
+                    <Text style={styles.typo3}>Back to wallet</Text>
+                </Button>
+                {/* <Text style={{marginBottom: 40}} onPress={() => props.navigation.navigate('SeedPhrase')}>Back up Recovery Phrase Again</Text> */}
             </View>
         </Box>
     );
@@ -31,27 +31,25 @@ const styles = StyleSheet.create({
     mainContainer: {
         borderTopWidth: 200,
         borderTopColor: '#FAD049',
-        // flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
+        backgroundColor: 'white'
     },
     container: {
         backgroundColor: '#FFF',
-        // flex: .8,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 40,
         textAlign: 'center',
         margin: 20,
-        // marginTop: -180,
+        marginTop: -80,
         borderRadius: 10,
         shadowColor: 'rgba(31, 31, 31, 0.77)',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.8,
-        shadowRadius: 2,  
+        shadowRadius: 2,
         elevation: 5
-        //boxShadow: 'rgba(31, 31, 31, 0.77) 1px 7px 33px -24px'
     },
     title: {
         fontSize: 20,
