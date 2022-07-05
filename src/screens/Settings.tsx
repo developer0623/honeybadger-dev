@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { NativeModules, StyleSheet, Linking, ScrollView } from 'react-native';
+import { StatusBar, NativeModules, StyleSheet, Linking, ScrollView } from 'react-native';
 import { Box, Text, View, Button, Container, Switch, HStack, ChevronRightIcon, CheckCircleIcon } from 'native-base';
 import DeviceInfo from 'react-native-device-info';
 import * as Keychain from 'react-native-keychain';
@@ -186,6 +186,7 @@ const Settings = ({ navigation }: SettingsProps) => {
 
     return (
         <Box style={styles.container}>
+            <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <CustomHeader title="Settings" onBack={() => navigation.goBack()} />
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={styles.content}>
@@ -213,7 +214,7 @@ const Settings = ({ navigation }: SettingsProps) => {
                                             }
 
                                             {name == 'Show Recovery Phrase' &&
-                                                <HStack style={{alignItems: 'center'}}>
+                                                <HStack style={{ alignItems: 'center' }}>
                                                     <Text style={styles.successText}>Backed up</Text>
                                                     <CheckCircleIcon />
                                                 </HStack>
@@ -223,13 +224,13 @@ const Settings = ({ navigation }: SettingsProps) => {
                                         <HStack>
                                             {action && (
                                                 isSwitch ?
-                                                <Switch
-                                                    trackColor={{ false: "#333333", true: "#0dbd8b" }}
-                                                    thumbColor={true ? "#FFFFFF" : "#f4f3f4"}
-                                                    ios_backgroundColor="#3e3e3e"
-                                                    onValueChange={toggleAppLock}
-                                                    value={securitySetup}
-                                                />
+                                                    <Switch
+                                                        trackColor={{ false: "#333333", true: "#0dbd8b" }}
+                                                        thumbColor={true ? "#FFFFFF" : "#f4f3f4"}
+                                                        ios_backgroundColor="#3e3e3e"
+                                                        onValueChange={toggleAppLock}
+                                                        value={securitySetup}
+                                                    />
                                                     : <ChevronRightIcon />
 
                                             )}
@@ -287,9 +288,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     lineOut: {
-        width: 330, 
-        flexDirection: 'row', 
-        alignItems: 'center', 
+        width: 330,
+        flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between'
     },
     btn: {

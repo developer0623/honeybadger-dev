@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import {
+    StatusBar,
     StyleSheet,
     Image,
     TouchableOpacity,
@@ -177,6 +178,7 @@ const Account = ({ navigation }: AccountProps) => {
 
     return (
         <Box style={styles.container}>
+            <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <BgGradient style={styles.bg} />
             {Platform.OS === 'ios' && (
                 <BeaconMessages navigation={navigation} route={undefined} />

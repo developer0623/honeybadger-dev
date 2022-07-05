@@ -1,19 +1,19 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet} from 'react-native';
-import {Center, Box, Container, Text, View} from 'native-base';
+import React, { useState, useEffect } from 'react';
+import { StatusBar, StyleSheet } from 'react-native';
+import { Center, Box, Container, Text, View } from 'native-base';
 import ProgressCircle from 'react-native-progress-circle';
 import * as Keychain from 'react-native-keychain';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {KeyStoreUtils} from '../softsigner';
-import {setKeysAction} from '../reducers/app/actions';
+import { KeyStoreUtils } from '../softsigner';
+import { setKeysAction } from '../reducers/app/actions';
 
 import Checkmark from '../../assets/checkmark.svg';
 
-import {State} from '../reducers/types';
-import {LoadingProps} from './types';
+import { State } from '../reducers/types';
+import { LoadingProps } from './types';
 
-const Loading = ({navigation}: LoadingProps) => {
+const Loading = ({ navigation }: LoadingProps) => {
     const termsDate = useSelector((state: State) => state.app.termsDate);
     const [ready, setReady] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -27,7 +27,7 @@ const Loading = ({navigation}: LoadingProps) => {
                     await Keychain.resetGenericPassword();
                     await Keychain.setGenericPassword(
                         'newwallet',
-                        JSON.stringify({...keys, termsDate}),
+                        JSON.stringify({ ...keys, termsDate }),
                     );
                     dispatch(setKeysAction(keys));
                     setReady(true);
@@ -63,6 +63,7 @@ const Loading = ({navigation}: LoadingProps) => {
 
     return (
         <Box style={styles.container}>
+            <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <View style={styles.item}>
                 <ProgressCircle
                     percent={progress}

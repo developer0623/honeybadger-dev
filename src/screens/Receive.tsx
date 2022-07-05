@@ -1,20 +1,20 @@
-import React, {useState} from 'react';
-import {StyleSheet, Clipboard} from 'react-native';
+import React, { useState } from 'react';
+import { StatusBar, StyleSheet, Clipboard } from 'react-native';
 import Share from 'react-native-share';
-import {useSelector} from 'react-redux';
-import {Box, Container, View, Text, CheckIcon} from 'native-base';
+import { useSelector } from 'react-redux';
+import { Box, Container, View, Text, CheckIcon } from 'native-base';
 import QRCode from 'react-native-qrcode-svg';
 
 import CustomButton from '../components/CustomButton';
 import CustomIcon from '../components/CustomIcon';
 import CustomHeader from '../components/CustomHeader';
 import CustomTooltip from '../components/CustomTooltip';
-import {splitHash} from '../utils/general';
+import { splitHash } from '../utils/general';
 
-import {State} from '../reducers/types';
-import {ReceiveProps} from './types';
+import { State } from '../reducers/types';
+import { ReceiveProps } from './types';
 
-const Receive = ({navigation}: ReceiveProps) => {
+const Receive = ({ navigation }: ReceiveProps) => {
     const address = useSelector((state: State) => state.app.publicKeyHash);
     const [copied, setCopied] = useState(false);
     const addressParts = splitHash(address);
@@ -34,6 +34,7 @@ const Receive = ({navigation}: ReceiveProps) => {
     };
     return (
         <Box style={styles.container}>
+            <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <CustomHeader title="Receive" onBack={() => navigation.goBack()} />
             <View style={styles.main}>
                 <Text style={styles.title}>
@@ -48,9 +49,9 @@ const Receive = ({navigation}: ReceiveProps) => {
                             style={
                                 !(i === 0 || i === addressParts.length - 1)
                                     ? [
-                                          styles.addressItem,
-                                          styles.addressItemMiddle,
-                                      ]
+                                        styles.addressItem,
+                                        styles.addressItemMiddle,
+                                    ]
                                     : styles.addressItem
                             } key={`address${i}`}>
                             {item}
