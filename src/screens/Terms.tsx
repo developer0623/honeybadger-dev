@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
-import {Container, Text, Button, View, Box} from 'native-base';
-import {useDispatch} from 'react-redux';
+import React, { useState } from 'react';
+import { StatusBar, StyleSheet } from 'react-native';
+import { Container, Text, Button, View, Box } from 'native-base';
+import { useDispatch } from 'react-redux';
 import Pdf from 'react-native-pdf';
 
-import {setTermsDate} from '../reducers/app/actions';
+import { setTermsDate } from '../reducers/app/actions';
 
 import SafeContainer from '../components/SafeContainer';
 import BottomCover from '../components/BottomCover';
 import CustomHeader from '../components/CustomHeader';
-import {colors} from '../theme';
-import {WelcomeProps} from './types';
+import { colors } from '../theme';
+import { WelcomeProps } from './types';
 
 const sources = [
     {
@@ -26,7 +26,7 @@ const sources = [
     },
 ];
 
-const Terms = ({navigation}: WelcomeProps) => {
+const Terms = ({ navigation }: WelcomeProps) => {
     const dispatch = useDispatch();
     const [tab, setTab] = useState(0);
 
@@ -47,6 +47,7 @@ const Terms = ({navigation}: WelcomeProps) => {
     return (
         <Box style={styles.container}>
             <SafeContainer>
+                <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
                 <CustomHeader title="Accept Terms" />
                 <View style={styles.content}>
                     <View style={styles.tabs}>

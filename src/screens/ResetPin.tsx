@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {StyleSheet, TextInput, ScrollView, Alert, Modal} from 'react-native';
-import {View, Text, Container, Button} from 'native-base';
+import {Box, View, Text, Container, Button} from 'native-base';
 import {useSelector} from 'react-redux';
 import * as Keychain from 'react-native-keychain';
 
@@ -118,7 +118,7 @@ const ResetPin = ({navigation}: SeedPhraseProps) => {
 
     return (
         <React.Fragment>
-            <Container style={styles.container}>
+            <Box style={styles.container}>
                 {
                     isBackAllowed() ? 
                     <CustomHeader
@@ -159,7 +159,7 @@ const ResetPin = ({navigation}: SeedPhraseProps) => {
                                 })
                             }
                             <Button style={styles.btn} onPress={validatePhrase}>
-                                <Text>Reset PIN</Text>
+                                <Text style={{color: 'white'}}>Reset PIN</Text>
                             </Button>
                         </View>
                     </KeyboardAwareScrollView>
@@ -176,7 +176,7 @@ const ResetPin = ({navigation}: SeedPhraseProps) => {
                     step === "ENABLE_BIOMETRIC" &&
                     <EnableBiometric success={true} skipBiometric={skipBiometric}/>
                 }
-            </Container>
+            </Box>
             <Modal
                 animationType="fade"
                 transparent={true}
@@ -187,7 +187,7 @@ const ResetPin = ({navigation}: SeedPhraseProps) => {
                         <Text style={styles.modalText}>Incorrect Entry</Text>
                         <Text style={styles.typo2}>Please try resetting your PIN again.</Text>
                         <Button style={styles.modalBtn} onPress={generateNewPhrases}>
-                            <Text>Try Again</Text>
+                            <Text style={{color: 'white'}}>Try Again</Text>
                         </Button>
                     </View>
                 </View>

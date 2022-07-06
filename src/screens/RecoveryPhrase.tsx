@@ -127,6 +127,7 @@ const RecoveryPhrase = ({ navigation, route }: SeedPhraseProps) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
+        paddingBottom: 70,
     },
     yellowContainer: {
         backgroundColor: colors.bg,

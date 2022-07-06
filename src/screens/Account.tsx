@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
+    StatusBar,
     StyleSheet,
     Image,
     TouchableOpacity,
     ScrollView,
     Platform,
 } from 'react-native';
-import {Box, Button, Text, View} from 'native-base';
+import { Box, Button, Text, View } from 'native-base';
 import * as Keychain from 'react-native-keychain';
 import Modal from 'react-native-modal';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Menu,
     MenuOptions,
@@ -20,19 +21,19 @@ import {
 
 import BeaconMessages from '../beacon/BeaconMessages';
 
-import {syncAccount} from '../reducers/app/thunks';
-import {setMessage} from '../reducers/messages/actions';
+import { syncAccount } from '../reducers/app/thunks';
+import { setMessage } from '../reducers/messages/actions';
 import Transactions from '../components/Transactions';
 import Delegation from '../components/Delegation';
 import Receive from '../../assets/receive.svg';
 import Send from '../../assets/send.svg';
 
 import CustomIcon from '../components/CustomIcon';
-import {truncateHash} from '../utils/general';
-import {formatAmount} from '../utils/currency';
+import { truncateHash } from '../utils/general';
+import { formatAmount } from '../utils/currency';
 
-import {State} from '../reducers/types';
-import {AccountProps} from './types';
+import { State } from '../reducers/types';
+import { AccountProps } from './types';
 import Fish from '../../assets/fish.svg';
 import Circle from '../../assets/circle.svg';
 import RightArrow from '../../assets/right-arrow.svg';
@@ -41,7 +42,7 @@ import BgGradient from '../../assets/bg-gradient.svg';
 import NFTIcon from '../../assets/nft.svg';
 import XTZIcon from '../../assets/xtz.svg';
 
-const Account = ({navigation}: AccountProps) => {
+const Account = ({ navigation }: AccountProps) => {
     const dispatch = useDispatch();
     const publicKeyHash = useSelector(
         (state: State) => state.app.publicKeyHash,
@@ -58,8 +59,7 @@ const Account = ({navigation}: AccountProps) => {
     );
     const [isPendingModalVisible, setPendingModalVisible] = useState(false);
     const [refreshTimer, setRefreshTimer] = useState(undefined as any);
-    // const [securityLevel, setSecurityLevel] = useState('3');
-    const [securityLevel, setSecurityLevel] = useState('0');
+    const [securityLevel, setSecurityLevel] = useState('3');
     const changeTab = (newTab: number) => {
         if (newTab === tab) {
             return;
@@ -76,6 +76,7 @@ const Account = ({navigation}: AccountProps) => {
                 );
                 if (data) {
                     data = JSON.parse(data.password);
+                    console.log("account data=>", data)
                     if (data.securitySetup && data.phraseBackedUp) {
                         setSecurityLevel('2');
                     } else if (data.securitySetup || data.phraseBackedUp) {
@@ -103,7 +104,7 @@ const Account = ({navigation}: AccountProps) => {
                 console.log("Keychain couldn't be accessed!", error);
             }
         }
-        // load();
+        load();
         navigation.addListener('didFocus', async (payload: any) => {
             try {
                 let data: any = await Keychain.getInternetCredentials(
@@ -161,11 +162,11 @@ const Account = ({navigation}: AccountProps) => {
     };
 
     const beaconItems = [
-        {title: 'Connect dApp', screen: 'BeaconInfo', action: onMenuSelect}
+        { title: 'Connect dApp', screen: 'BeaconInfo', action: onMenuSelect }
     ];
 
     const commonItems = [
-        {title: 'Settings', screen: 'Settings', action: onMenuSelect}
+        { title: 'Settings', screen: 'Settings', action: onMenuSelect }
     ];
 
     const menuItems =
@@ -177,11 +178,12 @@ const Account = ({navigation}: AccountProps) => {
 
     return (
         <Box style={styles.container}>
+            <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <BgGradient style={styles.bg} />
             {Platform.OS === 'ios' && (
                 <BeaconMessages navigation={navigation} route={undefined} />
             )}
-            <ScrollView contentContainerStyle={{flexGrow: 1}}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View>
                     <View style={styles.account}>
                         {/*<Text style={styles.typo1}>{`My account (${truncateHash(
@@ -222,9 +224,9 @@ const Account = ({navigation}: AccountProps) => {
                                                 index === menuItems.length - 1
                                                     ? styles.menuOption
                                                     : [
-                                                          styles.menuOption,
-                                                          styles.menuLastItem,
-                                                      ],
+                                                        styles.menuOption,
+                                                        styles.menuLastItem,
+                                                    ],
                                             optionText: styles.typo5,
                                         }}
                                     />
@@ -312,7 +314,7 @@ const Account = ({navigation}: AccountProps) => {
                                     }}
                                 />
                             </View>
-                            <View style={{width: '75%'}}>
+                            <View style={{ width: '75%' }}>
                                 <Text style={styles.typo6}>
                                     Your Security Level
                                 </Text>
@@ -324,7 +326,7 @@ const Account = ({navigation}: AccountProps) => {
                                 <Circle style={{width:60,height:59,marginRight:16}}/>
                             </View> */}
                             <View>
-                                <RightArrow style={{width: 9, height: 14}} />
+                                <RightArrow style={{ width: 9, height: 14 }} />
                             </View>
                         </TouchableOpacity>
                     )}
@@ -341,7 +343,7 @@ const Account = ({navigation}: AccountProps) => {
                                     }}
                                 />
                             </View>
-                            <View style={{width: '75%'}}>
+                            <View style={{ width: '75%' }}>
                                 <Text style={styles.typo6}>
                                     Your Security Level
                                 </Text>
@@ -353,7 +355,7 @@ const Account = ({navigation}: AccountProps) => {
                             <Circle style={{width:60,height:59,marginRight:16}}/>
                             </View> */}
                             <View>
-                                <RightArrow style={{width: 9, height: 14}} />
+                                <RightArrow style={{ width: 9, height: 14 }} />
                             </View>
                         </TouchableOpacity>
                     )}
@@ -430,7 +432,7 @@ const Account = ({navigation}: AccountProps) => {
 
                 <Modal isVisible={isPendingModalVisible}>
                     <View style={styles.warningModal}>
-                        <Text style={{marginBottom: 5}}>
+                        <Text style={{ marginBottom: 5 }}>
                             There is a pending operation awaiting processing on
                             the chain. It must be included in a block or time
                             out. New operations cannot be submitted until then.

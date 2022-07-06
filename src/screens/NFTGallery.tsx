@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView, Linking } from 'react-native';
+import { StatusBar, StyleSheet, ScrollView, Linking } from 'react-native';
 import { Box, Container, View, Text, Button } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -90,6 +90,7 @@ const NFTGallery = ({ navigation }: NavigationProps) => {
 
     return (
         <Box>
+            <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <CustomHeader
                 title="NFT Gallery"
                 onBack={() => navigation.goBack()}
