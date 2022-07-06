@@ -8,7 +8,7 @@ import {
     ScrollView,
     Platform,
 } from 'react-native';
-import { Box, Button, Text, View } from 'native-base';
+import { Box, Center, Button, Text, View } from 'native-base';
 import * as Keychain from 'react-native-keychain';
 import Modal from 'react-native-modal';
 import { useSelector, useDispatch } from 'react-redux';
@@ -177,7 +177,7 @@ const Account = ({ navigation }: AccountProps) => {
     };
 
     return (
-        <Box style={styles.container}>
+        <Center style={styles.container}>
             <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <BgGradient style={styles.bg} />
             {Platform.OS === 'ios' && (
@@ -445,7 +445,7 @@ const Account = ({ navigation }: AccountProps) => {
                     </View>
                 </Modal>
             </ScrollView>
-        </Box>
+        </Center>
     );
 };
 
@@ -483,6 +483,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 26,
         borderTopRightRadius: 26,
         alignItems: 'center',
+        minWidth: '100%'
     },
     menu: {
         marginRight: 25,
