@@ -118,5 +118,10 @@
     "stream": "stream-browserify",
     "fs": "react-native-level-fs",
     "vm": "vm-browserify"
+  },
+  "rnpm": {
+    "assets": [
+      "assets/fonts"
+    ]
   }
 }

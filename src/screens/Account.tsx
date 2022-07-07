@@ -40,7 +40,6 @@ import RightArrow from '../../assets/right-arrow.svg';
 import Salmon from '../../assets/salmon.svg';
 import BgGradient from '../../assets/bg-gradient.svg';
 import NFTIcon from '../../assets/nft.svg';
-import XTZIcon from '../../assets/xtz.svg';
 
 const Account = ({ navigation }: AccountProps) => {
     const dispatch = useDispatch();
@@ -239,10 +238,7 @@ const Account = ({ navigation }: AccountProps) => {
                             <Text fontSize="3xl" style={styles.typo2}>
                                 {formatAmount(balance)}
                             </Text>
-                            {/* <CustomIcon name="XTZ" size={30} color="#1a1919" /> */}
-                            <View style={styles.xtzIcon}>
-                                <XTZIcon />
-                            </View>
+                            <CustomIcon name="XTZ" size={30} color="#1a1919" />
                         </View>
                         {/*<View style={styles.center}>
                             <Text style={styles.typo3}>$0.00</Text>
