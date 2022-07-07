@@ -192,8 +192,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     btn: {
-        width: 160,
-        height: 50,
+        width: 130,
+        height: 45,
         borderColor: '#4b4b4b',
         borderWidth: 1,
         borderRadius: 25,

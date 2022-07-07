@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {StyleSheet} from 'react-native';
-import {Container, Text, View} from 'native-base';
+import {Container, Text, View, Box, HStack} from 'native-base';
 
 import {sendTransaction} from '../reducers/app/thunks';
 import Review from '../components/Review';
@@ -28,7 +28,7 @@ const SendReview = ({navigation}: SendReviewProps) => {
     };
 
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <CustomHeader
                 title="Review Transaction"
                 onBack={() => navigation.goBack()}
@@ -43,12 +43,16 @@ const SendReview = ({navigation}: SendReviewProps) => {
                 actionTitle="Tap to Send"
                 onSend={onSend}>
                 <Text style={styles.reviewAmountTitle}>Amount</Text>
-                <View style={styles.reviewAmount}>
+                {/* <View style={styles.reviewAmount}>
                     <Text style={styles.typo1}>{formatAmount(amount)}</Text>
                     <CustomIcon name="XTZ" size={30} color="#1a1919" />
-                </View>
+                </View> */}
+                <HStack justifyContent="center" alignItems="center">
+                    <Text fontSize="4xl">{formatAmount(amount)}</Text>
+                    <CustomIcon name="XTZ" size={30} color="#1a1919" />
+                </HStack>
             </Review>
-        </Container>
+        </Box>
     );
 };
 

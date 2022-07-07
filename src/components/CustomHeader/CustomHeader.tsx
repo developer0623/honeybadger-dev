@@ -45,7 +45,7 @@ const CustomHeader = ({
                 <HStack>{title && <Text style={styles.title}>{title}</Text>}</HStack>
                 <HStack style={styles.button}>
                     {onClose && !RightComponent && (
-                        <Button transparent onPress={onClose}>
+                        <Button variant="unstyled" onPress={onClose}>
                             <CustomIcon
                                 name={rightIconName}
                                 size={closeIconStyles.size}

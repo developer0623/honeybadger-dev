@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {StyleSheet, Platform, TextInput, KeyboardAvoidingView} from 'react-native';
-import {Container, Text, Input, View, Button} from 'native-base';
+import {Container, Text, Input, View, Button, Box, Center, HStack} from 'native-base';
 
 import EnterAddressErrors from '../components/EnterAddress/EnterAddressErrors';
 
@@ -84,7 +84,7 @@ const SendAmount = ({navigation}: SendAmountProps) => {
     };
 
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <CustomHeader
                 title="Enter Amount"
                 onBack={() => navigation.goBack()}
@@ -112,12 +112,16 @@ const SendAmount = ({navigation}: SendAmountProps) => {
                         keyboardType="numeric"
                     />
                 )}
-            <View style={styles.amount}>
+            {/* <View style={styles.amount}>
                 <Text style={styles.typo1}>
                     {formatAmount(Number(amount) * 1000000)}
                 </Text>
                 <CustomIcon name="XTZ" size={30} color="#1a1919" />
-            </View>
+            </View> */}
+            <HStack justifyContent="center" alignItems="center">
+                <Text fontSize="3xl">{formatAmount(Number(amount) * 1000000)}</Text>
+                <CustomIcon name="XTZ" size={30} color="#1a1919" />
+            </HStack>
             <View style={styles.errorContainer}>
                 <EnterAddressErrors isVisible={isError} title="Invalid Amount" message={errorMessage} />
             </View>
@@ -155,13 +159,14 @@ const SendAmount = ({navigation}: SendAmountProps) => {
                     </Button>
                 </View>
             </KeyboardAvoidingView>
-        </Container>
+        </Box>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.bg,
+        height: '100%'
     },
     title: {
         marginTop: 5,
@@ -171,10 +176,13 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     amount: {
-        marginTop: -230,
+        // marginTop: -230,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
+        backgroundColor: 'red',
+        height: 80,
+        paddingVertical: 0
     },
     input: {
         opacity:0
@@ -257,6 +265,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: 0.85,
         textTransform: 'capitalize',
+        color: 'white'
     },
     errorContainer: {
         height: 70

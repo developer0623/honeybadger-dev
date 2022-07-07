@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {Text, View, Button, Container} from 'native-base';
+import {Text, View, Button, Container, Box} from 'native-base';
 
 import FirstTimeAddress from '../../assets/first-time-address-illustration.svg';
 import CustomHeader from '../components/CustomHeader';
@@ -12,7 +12,7 @@ const SendFirstTime = ({navigation}: SendFirstTimeProps) => {
         navigation.navigate('SendAmount');
     };
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <CustomHeader
                 title=" "
                 onBack={() => navigation.goBack()}
@@ -30,7 +30,7 @@ const SendFirstTime = ({navigation}: SendFirstTimeProps) => {
                     <Text style={styles.buttonText}>Got It!</Text>
                 </Button>
             </View>
-        </Container>
+        </Box>
     );
 };
 
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: 0.85,
         textTransform: 'capitalize',
+        color: 'white'
     },
 });
 

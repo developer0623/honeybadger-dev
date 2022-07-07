@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 26,
         borderTopRightRadius: 26,
         paddingHorizontal: 30,
-        paddingTop: 22
+        paddingTop: 22,
     },
     btn: {
         width: 256,
