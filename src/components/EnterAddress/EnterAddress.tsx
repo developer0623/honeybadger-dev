@@ -1,6 +1,6 @@
 import React, { useState, FunctionComponent } from 'react';
 import { StyleSheet, Clipboard } from 'react-native';
-import { Box, Text, View, Input, Item } from 'native-base';
+import { Box, Text, View, Input } from 'native-base';
 
 import CustomHeader from '../CustomHeader';
 import EnterAddressCamera from './EnterAddressCamera';
@@ -72,8 +72,7 @@ const EnterAddress: FunctionComponent<EnterAddressProps> = ({
                     <CustomHeader title={headerTitle} onBack={goBack} />
                     <Text style={styles.title}>{addressTitle}</Text>
                     <View style={styles.address}>
-                        {/* <Item regular style={styles.item}> */}
-                        <Box alignItems="center">
+                        <Box alignItems="center" style={styles.item}>
                             <Input
                                 placeholder="e.g tz1…"
                                 style={styles.input}
@@ -83,8 +82,8 @@ const EnterAddress: FunctionComponent<EnterAddressProps> = ({
                                 autoCorrect={false}
                                 autoCapitalize="none"
                                 returnKeyType="next"
+                                variant="unstyled"
                             />
-                            {/* </Item> */}
                         </Box>
                     </View>
                     {children}

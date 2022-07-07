@@ -56,6 +56,7 @@ const SendAddress = ({navigation}: SendAddressProps) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.bg,
+        height: '100%'
     },
     bakerDetails: {
         width: '90%',
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         lineHeight: 30,
         textTransform: 'capitalize',
+        color: 'white'
     }
 });
 
