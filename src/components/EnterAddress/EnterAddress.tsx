@@ -1,6 +1,6 @@
-import React, {useState, FunctionComponent} from 'react';
-import {StyleSheet, Clipboard} from 'react-native';
-import {Text, View, Input, Item} from 'native-base';
+import React, { useState, FunctionComponent } from 'react';
+import { StyleSheet, Clipboard } from 'react-native';
+import { Box, Text, View, Input, Item } from 'native-base';
 
 import CustomHeader from '../CustomHeader';
 import EnterAddressCamera from './EnterAddressCamera';
@@ -54,7 +54,7 @@ const EnterAddress: FunctionComponent<EnterAddressProps> = ({
         onAddressTextChange(copiedMessage);
     };
     const onScanQrCode = () => setShowCamera(true);
-    const onBarcodeRecognized = ({data}: {data: string}) => {
+    const onBarcodeRecognized = ({ data }: { data: string }) => {
         if (data && data.length) {
             onAddressTextChange(data);
             setShowCamera(false);
@@ -72,7 +72,8 @@ const EnterAddress: FunctionComponent<EnterAddressProps> = ({
                     <CustomHeader title={headerTitle} onBack={goBack} />
                     <Text style={styles.title}>{addressTitle}</Text>
                     <View style={styles.address}>
-                        <Item regular style={styles.item}>
+                        {/* <Item regular style={styles.item}> */}
+                        <Box alignItems="center">
                             <Input
                                 placeholder="e.g tz1…"
                                 style={styles.input}
@@ -83,7 +84,8 @@ const EnterAddress: FunctionComponent<EnterAddressProps> = ({
                                 autoCapitalize="none"
                                 returnKeyType="next"
                             />
-                        </Item>
+                            {/* </Item> */}
+                        </Box>
                     </View>
                     {children}
                     <EnterAddressErrors

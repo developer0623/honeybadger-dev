@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {View, Text, Icon} from 'native-base';
+import { StyleSheet } from 'react-native';
+import { View, Text, Icon, WarningIcon } from 'native-base';
 
 interface EnterAddressErrorsProps {
     isVisible: boolean;
@@ -8,17 +8,13 @@ interface EnterAddressErrorsProps {
     message: string;
 }
 
-const EnterAddressErrors = ({isVisible, title, message}: EnterAddressErrorsProps) => {
+const EnterAddressErrors = ({ isVisible, title, message }: EnterAddressErrorsProps) => {
     return (
         <>
             {isVisible && (
                 <View style={styles.container}>
                     <View style={styles.title}>
-                        <Icon
-                            name="warning"
-                            type="AntDesign"
-                            style={styles.icon}
-                        />
+                        <WarningIcon style={styles.icon}/>
                         <Text style={styles.typo1}>{title}</Text>
                     </View>
                     <View style={styles.text}>

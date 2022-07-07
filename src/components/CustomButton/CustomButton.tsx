@@ -1,8 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Button, Text, View} from 'native-base';
-import CopyIcon from '../../../assets/copy.svg';
-import ShareIcon from '../../../assets/share-android.svg';
 import CustomIcon from '../CustomIcon';
 
 import {CustomButtonProps} from './types';
@@ -18,15 +16,7 @@ const CustomButton = ({
         <View style={styles.container}>
             <View style={styles.container}>
                 <Button style={styles.button} onPress={onPress} variant="unstyled">
-                    {/* <CustomIcon name={icon} size={size} color={color} /> */}
-                    <View style={styles.customIcon}>
-                        {label === "Copy" &&
-                            <CopyIcon />                        
-                        }
-                        {label === "Share" &&
-                            <ShareIcon />
-                        }
-                    </View>
+                    <CustomIcon name={icon} size={size} color={color} />
                 </Button>
             </View>
             <Text style={styles.text}>{label}</Text>

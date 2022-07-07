@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useReducer } from 'react';
-import { StyleSheet, View, TextInput, KeyboardAvoidingView, Platform, SafeAreaView, Image } from "react-native";
+import { StyleSheet, View, TextInput, ScrollView, KeyboardAvoidingView, Platform, SafeAreaView, Image } from "react-native";
 import { Box, Container, Center, Text } from 'native-base';
 
 import { colors } from '../../theme';
@@ -140,7 +140,7 @@ const PinCode = (props: any) => {
     }
 
     return (
-        <Box style={styles.containerWrapper}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'handled'}>
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
                 <View>
                     {
@@ -281,7 +281,7 @@ const PinCode = (props: any) => {
                     </View>
                 </SafeAreaView>
             </KeyboardAvoidingView>
-        </Box>
+        </ScrollView>
     )
 }
 

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {StyleSheet} from 'react-native';
-import {Container, View, Button, Text} from 'native-base';
+import {Container, Box, View, Button, Text} from 'native-base';
 
 import {setSendAddress} from '../reducers/app/actions';
 
@@ -33,7 +33,7 @@ const SendAddress = ({navigation}: SendAddressProps) => {
     };
 
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <EnterAddress
                 headerTitle="Send"
                 addressTitle="Enter Recipient Address"
@@ -49,7 +49,7 @@ const SendAddress = ({navigation}: SendAddressProps) => {
                     </View>
                 </View>)}
             </EnterAddress>
-        </Container>
+        </Box>
     );
 };
 

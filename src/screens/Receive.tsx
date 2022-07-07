@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Clipboard } from 'react-native';
 import Share from 'react-native-share';
 import { useSelector } from 'react-redux';
-import { Box, Container, View, Text, CheckIcon } from 'native-base';
+import { Box, Container, View, Text } from 'native-base';
 import QRCode from 'react-native-qrcode-svg';
 
 import CustomButton from '../components/CustomButton';
@@ -64,8 +64,7 @@ const Receive = ({ navigation }: ReceiveProps) => {
                             isVisible={copied}
                             content={
                                 <View style={styles.tooltipContent}>
-                                    {/* <CustomIcon name="Checkmark" size={16} /> */}
-                                    <CheckIcon />
+                                    <CustomIcon name="Checkmark" size={16} />
                                     <Text style={styles.tooltipText}>
                                         Copied to the clipboard
                                     </Text>

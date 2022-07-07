@@ -75,7 +75,7 @@ const Account = ({ navigation }: AccountProps) => {
                 );
                 if (data) {
                     data = JSON.parse(data.password);
-                    console.log("account data=>", data)
+                    console.log("=======account data=>", data)
                     if (data.securitySetup && data.phraseBackedUp) {
                         setSecurityLevel('2');
                     } else if (data.securitySetup || data.phraseBackedUp) {
@@ -109,6 +109,7 @@ const Account = ({ navigation }: AccountProps) => {
                 let data: any = await Keychain.getInternetCredentials(
                     'securitySetup',
                 );
+                console.log("=======did focus account data=>", data)
                 if (data) {
                     data = JSON.parse(data.password);
                     if (data.securitySetup && data.phraseBackedUp) {
