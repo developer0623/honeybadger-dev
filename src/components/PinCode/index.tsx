@@ -140,17 +140,21 @@ const PinCode = (props: any) => {
     }
 
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'handled'}>
-            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
-                <View>
-                    {
-                        props.allowChange &&
-                        <View style={styles.containerForgotPin}>
-                            <Text onPress={() => props.redirectToResetPin()} style={styles.forgotPassword}>Forgot Pin?</Text>
-                        </View>
-                    }
-                </View>
-                <SafeAreaView style={styles.areaContainer}>
+        <SafeAreaView style={styles.areaContainer}>
+            <KeyboardAvoidingView
+                style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', }}
+                behavior={Platform.OS === 'ios' ? 'padding' : "height"}
+                enabled
+                keyboardVerticalOffset={100}>
+                <ScrollView keyboardShouldPersistTaps="always" showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+                    <View>
+                        {
+                            props.allowChange &&
+                            <View style={styles.containerForgotPin}>
+                                <Text onPress={() => props.redirectToResetPin()} style={styles.forgotPassword}>Forgot Pin?</Text>
+                            </View>
+                        }
+                    </View>
                     <View style={styles.container}>
                         <View style={styles.logo}>
                             <Logo />
@@ -275,13 +279,13 @@ const PinCode = (props: any) => {
                         {
                             props.isSkipAllowed &&
                             <View>
-                                <Text style={{ marginTop: 50 }} onPress={props.skipBiometric}>Skip</Text>
+                                <Text style={{ marginVertical: 30 }} onPress={props.skipBiometric}>Skip</Text>
                             </View>
                         }
                     </View>
-                </SafeAreaView>
+                </ScrollView>
             </KeyboardAvoidingView>
-        </ScrollView>
+        </SafeAreaView>
     )
 }
 
@@ -302,13 +306,14 @@ const styles = StyleSheet.create({
         paddingRight: 35
     },
     areaContainer: {
-        flex: 1
+        flex: 1,
     },
     containerFlex: {
         alignItems: 'center',
         flexDirection: 'row'
     },
     title: {
+        marginTop: 20,
         fontSize: 18,
         marginBottom: 40,
     },
@@ -341,6 +346,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     logo: {
+        marginTop: 50,
         height: '40%',
         alignItems: 'center',
         justifyContent: 'center',
