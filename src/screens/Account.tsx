@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import { useIsFocused } from "@react-navigation/native";
 import {
     StatusBar,
     StyleSheet,
@@ -63,6 +64,7 @@ const Account = ({ navigation }: AccountProps) => {
         }
         setTab(newTab);
     };
+    const isFocused = useIsFocused();
 
     useEffect(() => {
         async function load() {
@@ -101,28 +103,7 @@ const Account = ({ navigation }: AccountProps) => {
             }
         }
         load();
-        navigation.addListener('didFocus', async (payload: any) => {
-            try {
-                let data: any = await Keychain.getInternetCredentials(
-                    'securitySetup',
-                );
-                if (data) {
-                    data = JSON.parse(data.password);
-                    if (data.securitySetup && data.phraseBackedUp) {
-                        setSecurityLevel('2');
-                    } else if (data.securitySetup || data.phraseBackedUp) {
-                        setSecurityLevel('1');
-                    } else {
-                        setSecurityLevel('0');
-                    }
-                } else {
-                    setSecurityLevel('0');
-                }
-            } catch (error) {
-                // error
-            }
-        });
-    }, [navigation]);
+    }, [navigation, isFocused]);
 
     const onPress = (value: string) => {
         if (balance === 0 && value === 'SendAddress') {

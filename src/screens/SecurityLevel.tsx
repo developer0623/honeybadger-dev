@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Box, View, Text, Container } from 'native-base';
+import { Box, View, Text } from 'native-base';
 import * as Keychain from 'react-native-keychain';
 
 import Fish from '../../assets/fish.svg';
@@ -142,24 +142,25 @@ const SecurityLevel = ({ navigation }: SeedPhraseProps) => {
             <CustomHeader
                 title="Security Level"
                 onBack={() => navigation.goBack()} />
-            <View style={{ alignItems: "center", paddingBottom: 34 }}>
-                {securityLevel === "0" &&
-                    <GoldFishBlack style={{ width: 91, height: 68, marginTop: 34, marginBottom: 24 }} />
-                }
-                {securityLevel === "1" &&
-                    <SalmonBlack style={{ width: 91, height: 68, marginTop: 34, marginBottom: 24 }} />
-                }
-                {securityLevel === "2" &&
-                    <DolphinBlack style={{ width: 91, height: 68, marginTop: 34, marginBottom: 24 }} />
-                }
-                <Text style={styles.typo1}>
-                    {getSecurityLevelText()}
-                </Text>
-                <Text style={styles.typo5}>
-                    {getSubText()}
-                </Text>
-            </View>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+
+                <View style={{ alignItems: "center", paddingBottom: 34 }}>
+                    {securityLevel === "0" &&
+                        <GoldFishBlack style={{ width: 91, height: 68, marginTop: 34, marginBottom: 24 }} />
+                    }
+                    {securityLevel === "1" &&
+                        <SalmonBlack style={{ width: 91, height: 68, marginTop: 34, marginBottom: 24 }} />
+                    }
+                    {securityLevel === "2" &&
+                        <DolphinBlack style={{ width: 91, height: 68, marginTop: 34, marginBottom: 24 }} />
+                    }
+                    <Text style={styles.typo1}>
+                        {getSecurityLevelText()}
+                    </Text>
+                    <Text style={styles.typo5}>
+                        {getSubText()}
+                    </Text>
+                </View>
                 <View style={styles.content}>
                     {Number(securityLevel) < 2 &&
                         <TouchableOpacity style={styles.security} onPress={() => handleNavigation()}>
@@ -188,100 +189,98 @@ const SecurityLevel = ({ navigation }: SeedPhraseProps) => {
                             </View>
                         </TouchableOpacity>}
 
-                    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-                        <View>
-                            <Text style={styles.typo3}>
-                                Levels
-                            </Text>
-                            <View style={styles.levelMain}>
-                                <View style={{ paddingTop: 18 }}>
-                                    {securityLevel === "0" &&
-                                        <React.Fragment>
-                                            <View style={styles.dotsContainer}>
-                                                <Text style={styles.greyDots1}></Text>
-                                                <Text style={styles.orangeDot1}></Text>
-                                                <Text style={styles.greyLine1}></Text>
-                                            </View>
-                                            <View style={styles.dotsContainer}>
-                                                <Text style={styles.greyDots1}></Text>
-                                                <Text style={styles.greyLine1}></Text>
-                                            </View>
-                                            <View >
-                                                <Text style={styles.greyDots3}></Text>
-                                                <Flag style={{ width: 15, height: 16, marginTop: -26, marginLeft: 12 }} />
-                                            </View>
-                                        </React.Fragment>
-                                    }
-                                    {securityLevel === "1" &&
-                                        <React.Fragment>
-                                            <View style={styles.dotsContainer}>
-                                                <Text style={styles.greyDots2}></Text>
-                                                <Text style={styles.orangeDot1}></Text>
-                                                <Text style={styles.orangeLine1}></Text>
-                                            </View>
-                                            <View style={styles.dotsContainer}>
-                                                <Text style={styles.greyDots1}></Text>
-                                                <Text style={styles.orangeDot1}></Text>
-                                                <Text style={styles.greyLine1}></Text>
-                                            </View>
-                                            <View >
-                                                <Text style={styles.greyDots3}></Text>
-                                                <Flag style={{ width: 15, height: 16, marginTop: -26, marginLeft: 12 }} />
-                                            </View>
-                                        </React.Fragment>
-                                    }
-                                    {securityLevel === "2" &&
-                                        <React.Fragment>
-                                            <View style={styles.dotsContainer}>
-                                                <Text style={styles.greyDots2}></Text>
-                                                <Text style={styles.orangeDot1}></Text>
-                                                <Text style={styles.orangeLine1}></Text>
-                                            </View>
-                                            <View style={styles.dotsContainer}>
-                                                <Text style={styles.greyDots2}></Text>
-                                                <Text style={styles.orangeDot1}></Text>
-                                                <Text style={styles.orangeLine1}></Text>
-                                            </View>
+                    <View>
+                        <Text style={styles.typo3}>
+                            Levels
+                        </Text>
+                        <View style={styles.levelMain}>
+                            <View style={{ paddingTop: 18 }}>
+                                {securityLevel === "0" &&
+                                    <React.Fragment>
+                                        <View style={styles.dotsContainer}>
+                                            <Text style={styles.greyDots1}></Text>
+                                            <Text style={styles.orangeDot1}></Text>
+                                            <Text style={styles.greyLine1}></Text>
+                                        </View>
+                                        <View style={styles.dotsContainer}>
+                                            <Text style={styles.greyDots1}></Text>
+                                            <Text style={styles.greyLine1}></Text>
+                                        </View>
+                                        <View >
+                                            <Text style={styles.greyDots3}></Text>
+                                            <Flag style={{ width: 15, height: 16, marginTop: -26, marginLeft: 12 }} />
+                                        </View>
+                                    </React.Fragment>
+                                }
+                                {securityLevel === "1" &&
+                                    <React.Fragment>
+                                        <View style={styles.dotsContainer}>
+                                            <Text style={styles.greyDots2}></Text>
+                                            <Text style={styles.orangeDot1}></Text>
+                                            <Text style={styles.orangeLine1}></Text>
+                                        </View>
+                                        <View style={styles.dotsContainer}>
+                                            <Text style={styles.greyDots1}></Text>
+                                            <Text style={styles.orangeDot1}></Text>
+                                            <Text style={styles.greyLine1}></Text>
+                                        </View>
+                                        <View >
+                                            <Text style={styles.greyDots3}></Text>
+                                            <Flag style={{ width: 15, height: 16, marginTop: -26, marginLeft: 12 }} />
+                                        </View>
+                                    </React.Fragment>
+                                }
+                                {securityLevel === "2" &&
+                                    <React.Fragment>
+                                        <View style={styles.dotsContainer}>
+                                            <Text style={styles.greyDots2}></Text>
+                                            <Text style={styles.orangeDot1}></Text>
+                                            <Text style={styles.orangeLine1}></Text>
+                                        </View>
+                                        <View style={styles.dotsContainer}>
+                                            <Text style={styles.greyDots2}></Text>
+                                            <Text style={styles.orangeDot1}></Text>
+                                            <Text style={styles.orangeLine1}></Text>
+                                        </View>
 
-                                            <View >
-                                                <Text style={styles.orangeDot3}></Text>
-                                                <Whiteflag style={{ width: 15, height: 16, marginTop: -26, marginLeft: 12 }} />
-                                            </View>
-                                        </React.Fragment>
-                                    }
+                                        <View >
+                                            <Text style={styles.orangeDot3}></Text>
+                                            <Whiteflag style={{ width: 15, height: 16, marginTop: -26, marginLeft: 12 }} />
+                                        </View>
+                                    </React.Fragment>
+                                }
+                            </View>
+                            <View>
+                                <View style={styles.levels}>
+                                    <View>
+                                        <Fish style={{ width: 47, height: 35, marginRight: 16 }} />
+                                    </View>
+                                    <View>
+                                        <Text style={styles.typo3}>Level 1: Goldfish</Text>
+                                        <Text style={styles.typo6}>No Security</Text>
+                                    </View>
                                 </View>
-                                <View>
-                                    <View style={styles.levels}>
-                                        <View>
-                                            <Fish style={{ width: 47, height: 35, marginRight: 16 }} />
-                                        </View>
-                                        <View>
-                                            <Text style={styles.typo3}>Level 1: Goldfish</Text>
-                                            <Text style={styles.typo6}>No Security</Text>
-                                        </View>
+                                <View style={styles.levels}>
+                                    <View>
+                                        <Salmon style={{ width: 47, height: 35, marginRight: 16 }} />
                                     </View>
-                                    <View style={styles.levels}>
-                                        <View>
-                                            <Salmon style={{ width: 47, height: 35, marginRight: 16 }} />
-                                        </View>
-                                        <View>
-                                            <Text style={styles.typo3}>Level 2: Savvy Salmon</Text>
-                                            <Text style={styles.typo6}>{getSecurityLevelForStepper("1")}</Text>
-                                        </View>
+                                    <View>
+                                        <Text style={styles.typo3}>Level 2: Savvy Salmon</Text>
+                                        <Text style={styles.typo6}>{getSecurityLevelForStepper("1")}</Text>
                                     </View>
-                                    <View style={styles.levels}>
-                                        <View>
-                                            <Dolphin style={{ width: 47, height: 42, marginRight: 29 }} />
-                                        </View>
-                                        <View>
-                                            <Text style={styles.typo3}>Level 3: Discreet Dolphin</Text>
-                                            <Text style={styles.typo6}>{getSecurityLevelForStepper("2")}</Text>
-                                        </View>
+                                </View>
+                                <View style={styles.levels}>
+                                    <View>
+                                        <Dolphin style={{ width: 47, height: 42, marginRight: 29 }} />
+                                    </View>
+                                    <View>
+                                        <Text style={styles.typo3}>Level 3: Discreet Dolphin</Text>
+                                        <Text style={styles.typo6}>{getSecurityLevelForStepper("2")}</Text>
                                     </View>
                                 </View>
                             </View>
                         </View>
-                    </ScrollView>
+                    </View>
                 </View>
             </ScrollView>
         </Box>
@@ -299,6 +298,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 26,
         paddingHorizontal: 30,
         paddingTop: 22,
+        paddingBottom: 100
     },
     btn: {
         width: 256,
