@@ -3,12 +3,11 @@ import React, { useState, useEffect } from 'react';
 import {
     StatusBar,
     StyleSheet,
-    Image,
     TouchableOpacity,
     ScrollView,
     Platform,
 } from 'react-native';
-import { Box, Center, Button, Text, View } from 'native-base';
+import { Center, Button, Text, View } from 'native-base';
 import * as Keychain from 'react-native-keychain';
 import Modal from 'react-native-modal';
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,7 +34,6 @@ import { formatAmount } from '../utils/currency';
 import { State } from '../reducers/types';
 import { AccountProps } from './types';
 import Fish from '../../assets/fish.svg';
-import Circle from '../../assets/circle.svg';
 import RightArrow from '../../assets/right-arrow.svg';
 import Salmon from '../../assets/salmon.svg';
 import BgGradient from '../../assets/bg-gradient.svg';
@@ -75,7 +73,6 @@ const Account = ({ navigation }: AccountProps) => {
                 );
                 if (data) {
                     data = JSON.parse(data.password);
-                    console.log("=======account data=>", data)
                     if (data.securitySetup && data.phraseBackedUp) {
                         setSecurityLevel('2');
                     } else if (data.securitySetup || data.phraseBackedUp) {
@@ -109,7 +106,6 @@ const Account = ({ navigation }: AccountProps) => {
                 let data: any = await Keychain.getInternetCredentials(
                     'securitySetup',
                 );
-                console.log("=======did focus account data=>", data)
                 if (data) {
                     data = JSON.parse(data.password);
                     if (data.securitySetup && data.phraseBackedUp) {
@@ -241,9 +237,6 @@ const Account = ({ navigation }: AccountProps) => {
                             </Text>
                             <CustomIcon name="XTZ" size={30} color="#1a1919" />
                         </View>
-                        {/*<View style={styles.center}>
-                            <Text style={styles.typo3}>$0.00</Text>
-                        </View>*/}
                     </View>
                     <View style={styles.actions}>
                         <View style={styles.center}>

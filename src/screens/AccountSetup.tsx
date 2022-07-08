@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { AccountSettingsProps } from './types';
-import { Box, Container, Center } from 'native-base';
+import { Box } from 'native-base';
 import { StatusBar, StyleSheet, Alert } from "react-native";
 import * as Keychain from 'react-native-keychain';
 

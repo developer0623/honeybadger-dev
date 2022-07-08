@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { StatusBar, StyleSheet, Clipboard } from 'react-native';
+import { StatusBar, StyleSheet, Clipboard, ScrollView } from 'react-native';
 import Share from 'react-native-share';
 import { useSelector } from 'react-redux';
-import { Box, Container, View, Text } from 'native-base';
+import { Box, View, Text } from 'native-base';
 import QRCode from 'react-native-qrcode-svg';
 
 import CustomButton from '../components/CustomButton';
@@ -36,58 +36,60 @@ const Receive = ({ navigation }: ReceiveProps) => {
         <Box style={styles.container}>
             <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <CustomHeader title="Receive" onBack={() => navigation.goBack()} />
-            <View style={styles.main}>
-                <Text style={styles.title}>
-                    Share your account address to receive XTZ or Tezos tokens
-                </Text>
-                <View style={styles.qr}>
-                    <QRCode value={address} size={199} />
-                </View>
-                <View style={styles.address}>
-                    {addressParts.map((item, i) => (
-                        <Text
-                            style={
-                                !(i === 0 || i === addressParts.length - 1)
-                                    ? [
-                                        styles.addressItem,
-                                        styles.addressItemMiddle,
-                                    ]
-                                    : styles.addressItem
-                            } key={`address${i}`}>
-                            {item}
-                        </Text>
-                    ))}
-                </View>
-                <View style={styles.actions}>
-                    <View>
-                        <CustomTooltip
-                            isVisible={copied}
-                            content={
-                                <View style={styles.tooltipContent}>
-                                    <CustomIcon name="Checkmark" size={16} />
-                                    <Text style={styles.tooltipText}>
-                                        Copied to the clipboard
-                                    </Text>
-                                </View>
-                            }
-                            onClose={() => setCopied(false)}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <View style={styles.main}>
+                    <Text style={styles.title}>
+                        Share your account address to receive XTZ or Tezos tokens
+                    </Text>
+                    <View style={styles.qr}>
+                        <QRCode value={address} size={199} />
+                    </View>
+                    <View style={styles.address}>
+                        {addressParts.map((item, i) => (
+                            <Text
+                                style={
+                                    !(i === 0 || i === addressParts.length - 1)
+                                        ? [
+                                            styles.addressItem,
+                                            styles.addressItemMiddle,
+                                        ]
+                                        : styles.addressItem
+                                } key={`address${i}`}>
+                                {item}
+                            </Text>
+                        ))}
+                    </View>
+                    <View style={styles.actions}>
+                        <View>
+                            <CustomTooltip
+                                isVisible={copied}
+                                content={
+                                    <View style={styles.tooltipContent}>
+                                        <CustomIcon name="Checkmark" size={16} />
+                                        <Text style={styles.tooltipText}>
+                                            Copied to the clipboard
+                                        </Text>
+                                    </View>
+                                }
+                                onClose={() => setCopied(false)}>
+                                <CustomButton
+                                    icon="Copy"
+                                    label="Copy"
+                                    onPress={onCopyToClipboard}
+                                />
+                            </CustomTooltip>
+                        </View>
+                        <View style={styles.line} />
+                        <View>
                             <CustomButton
-                                icon="Copy"
-                                label="Copy"
-                                onPress={onCopyToClipboard}
+                                icon="Share-Android"
+                                label="Share"
+                                onPress={onShare}
                             />
-                        </CustomTooltip>
-                    </View>
-                    <View style={styles.line} />
-                    <View>
-                        <CustomButton
-                            icon="Share-Android"
-                            label="Share"
-                            onPress={onShare}
-                        />
+                        </View>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         </Box>
     );
 };
