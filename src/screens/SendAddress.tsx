@@ -30,7 +30,11 @@ const SendAddress = ({navigation}: SendAddressProps) => {
     };
 
     const onValidAddress = (value: string, valid: boolean) => {
-        setAddress(value);
+        let first6 = value.substring(0, 5);
+        let last6 = value.slice(-6);
+        let temp = first6 + "..." + last6;
+        setAddress(temp);
+        console.log("===>", value)
         dispatch(setSendAddress(value));
         setValidAddress(valid);
     };
@@ -45,12 +49,14 @@ const SendAddress = ({navigation}: SendAddressProps) => {
                 onValidAddress={onValidAddress}>
                 {isValidAddress && (
                 <View style={styles.bakerDetails}>
-                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <CustomIcon name="Checkmark" size="25" color="#f5942a" />
-                            <View>
-                                <Text>Recepient Address</Text>
-                                <Text>{address}</Text>
+                    <View style={styles.backerContainer}>
+                        <View style={styles.backerLeftContainer}>
+                            <View style={styles.checkMarkCon}>
+                                <CustomIcon name="Checkmark" size={15} color="#f5942a" />
+                            </View>
+                            <View style={{marginLeft: 10}}>
+                                <Text style={styles.typo3}>Recepient Address</Text>
+                                <Text style={styles.typo4}>{address}</Text>
                             </View>
                         </View>
                         <Button style={styles.nextButton} onPress={goNext}>
@@ -74,7 +80,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 24,
         flexDirection: 'column',
         borderStyle: 'solid',
-        alignItems: 'center',
         backgroundColor: 'white',
         alignSelf: 'center',
         borderRadius: 15.5,
@@ -96,7 +101,12 @@ const styles = StyleSheet.create({
         lineHeight: 30,
         textTransform: 'capitalize',
         color: 'white'
-    }
+    },
+    backerContainer: {flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'},
+    backerLeftContainer: {flexDirection: 'row', alignItems: 'center'},
+    checkMarkCon: {padding: 5, borderRadius: 50, borderWidth: 1, borderStyle: 'solid', borderColor: '#f5942a'},
+    typo3: {color: '#565855', fontSize: 11},
+    typo4: {color: '#646464', fontSize: 14, fontWeight: 'bold'}
 });
 
 export default SendAddress;
