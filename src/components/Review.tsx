@@ -41,9 +41,6 @@ const Review: FunctionComponent<ReviewProps> = ({
     return (
         <View style={styles.paper}>
             <Text style={[styles.title, styles.typo1]}>{fromTitle}</Text>
-            {/* <Text style={[styles.address, styles.typo2]}>
-                {truncateHash(from)}
-            </Text> */}
             <HStack justifyContent="center" alignItems="center">
                 <Text fontSize="2xl">{truncateHash(from)}</Text>
             </HStack>
@@ -59,30 +56,15 @@ const Review: FunctionComponent<ReviewProps> = ({
             <Text style={[styles.title, styles.typo1, styles.recipient]}>
                 {toTitle}
             </Text>
-            {/* <Text style={[styles.address, styles.typo2]}>
-                {truncateHash(to)}
-            </Text> */}
             <HStack justifyContent="center" alignItems="center">
                 <Text fontSize="2xl">{truncateHash(to)}</Text>
             </HStack>
             {info.length > 0 && (
-                // <View style={styles.info}>
-                //     <Text style={styles.infoText}>{info}</Text>
-                // </View>
                 <HStack justifyContent="center" alignItems="center">
                     <Text fontSize="xl">{info}</Text>
                 </HStack>
             )}
             <View style={[styles.fee, styles.row]}>
-                {/*<Text style={styles.typo5}>
-                        {`Operation Fee $${fee}`}
-                    </Text>*/}
-                {/* <View style={[styles.row, styles.feeCurrency]}>
-                    <Text>
-                        {`Operation Fee ${isRevealed ? formatAmount(fee) : (utezToTez(fee) + utezToTez(constants.fees.reveal)).toFixed(3)}`}
-                    </Text>
-                    <CustomIcon name="XTZ" size={14} />
-                </View> */}
                 <HStack justifyContent="center" alignItems="center">
                     <Text fontSize="lg">
                         {`Operation Fee ${isRevealed ? formatAmount(fee) : (utezToTez(fee) + utezToTez(constants.fees.reveal)).toFixed(3)}`}    
@@ -106,7 +88,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         paddingHorizontal: 36,
         paddingTop: 67,
-        paddingBottom: 23,
+        paddingBottom: 100,
         alignItems: 'center',
     },
     title: {
