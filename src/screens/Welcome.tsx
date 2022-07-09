@@ -183,9 +183,9 @@ const Welcome = ({ navigation }: WelcomeProps) => {
                 </SafeContainer>
             </Box>
             :
-            <Center style={styles.containerWrapper}>
+            <Box style={styles.containerWrapper}>
                 <PinCode key="pin" text='Please Enter Your Pin' handlePin={handlePin} isResetNeeded={false} isSkipAllowed={false} allowChange={true} redirectToResetPin={redirectToResetPin} />
-            </Center>
+            </Box>
     );
 };
 
@@ -273,6 +273,7 @@ const styles = StyleSheet.create({
     },
     containerWrapper: {
         backgroundColor: colors.bg,
+        flex: 1
     },
 });
 

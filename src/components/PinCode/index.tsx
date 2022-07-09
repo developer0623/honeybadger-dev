@@ -140,13 +140,9 @@ const PinCode = (props: any) => {
     }
 
     return (
-        <SafeAreaView style={styles.areaContainer}>
-            <KeyboardAvoidingView
-                style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', }}
-                behavior={Platform.OS === 'ios' ? 'padding' : "height"}
-                enabled
-                keyboardVerticalOffset={100}>
-                <ScrollView keyboardShouldPersistTaps="always" showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps={'handled'}>
+            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
+                <SafeAreaView style={{ flex: 1 }}>
                     <View>
                         {
                             props.allowChange &&
@@ -283,9 +279,9 @@ const PinCode = (props: any) => {
                             </View>
                         }
                     </View>
-                </ScrollView>
+                </SafeAreaView>
             </KeyboardAvoidingView>
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 

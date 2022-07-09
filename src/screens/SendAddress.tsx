@@ -10,11 +10,13 @@ import {colors} from '../theme';
 import {validateBakerAddress} from '../reducers/app/thunks';
 import {State, Operation} from '../reducers/types';
 import {SendAddressProps} from './types';
+import CustomIcon from '../components/CustomIcon';
 
 const SendAddress = ({navigation}: SendAddressProps) => {
     const transactions = useSelector((state: State) => state.app.transactions);
     const publicKeyHash = useSelector((state: State) => state.app.publicKeyHash);
     const [isValidAddress, setValidAddress] = useState(false);
+    const [address, setAddress] = React.useState('');
     const dispatch = useDispatch();
 
     const goNext = () => {
@@ -28,6 +30,7 @@ const SendAddress = ({navigation}: SendAddressProps) => {
     };
 
     const onValidAddress = (value: string, valid: boolean) => {
+        setAddress(value);
         dispatch(setSendAddress(value));
         setValidAddress(valid);
     };
@@ -42,7 +45,14 @@ const SendAddress = ({navigation}: SendAddressProps) => {
                 onValidAddress={onValidAddress}>
                 {isValidAddress && (
                 <View style={styles.bakerDetails}>
-                    <View>
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <CustomIcon name="Checkmark" size="25" color="#f5942a" />
+                            <View>
+                                <Text>Recepient Address</Text>
+                                <Text>{address}</Text>
+                            </View>
+                        </View>
                         <Button style={styles.nextButton} onPress={goNext}>
                             <Text style={styles.typo2}>Next</Text>
                         </Button>
