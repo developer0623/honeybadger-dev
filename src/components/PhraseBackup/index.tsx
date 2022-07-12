@@ -145,7 +145,7 @@ const PhraseBackup = (props: any) => {
                         <Text style={styles.modalText}>Oops! Incorrect order</Text>
                         <Text style={styles.typo2}> Please enter your recovery phrase again to ensure you have written it down correctly .</Text>
                         <Button style={styles.modalBtn} onPress={generateNewPhrases}>
-                            <Text>Try Again</Text>
+                            <Text style={{color: 'white'}}>Try Again</Text>
                         </Button>
                     </View>
                 </View>
