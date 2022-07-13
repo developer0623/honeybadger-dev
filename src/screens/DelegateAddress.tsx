@@ -385,6 +385,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '300',
         lineHeight: 30,
+        color: 'white'
     },
     typo3: {
         fontFamily: 'Roboto-Regular',

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {StyleSheet} from 'react-native';
-import {Container, View} from 'native-base';
+import {Container, Box, View} from 'native-base';
 
 import LinkIcon from '../../assets/link-icon.svg';
 
@@ -33,7 +33,7 @@ const DelegateReview = ({navigation}: DelegateReviewProps) => {
     }
 
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <CustomHeader
                 title="Review Delegation"
                 onBack={() => navigation.goBack()}
@@ -52,7 +52,7 @@ const DelegateReview = ({navigation}: DelegateReviewProps) => {
                     <LinkIcon />
                 </View>
             </Review>
-        </Container>
+        </Box>
     );
 };
 
