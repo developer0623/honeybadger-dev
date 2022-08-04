@@ -18,6 +18,7 @@ const displayScopes: Record<string, string> = {
 const BeaconPermissionsRequest = ({navigation}: BeaconProps) => {
     const dispatch = useDispatch();
     const publicKey = useSelector((state: State) => state.app.publicKey);
+    const address = useSelector((state: State) => state.app.publicKeyHash);
     const beaconMessage = useSelector(
         (state: State) => state.beacon.beaconMessage,
     );
@@ -32,7 +33,7 @@ const BeaconPermissionsRequest = ({navigation}: BeaconProps) => {
     const onAuthorize = async () => {
         try {
             dispatch(setBeaconLoading(true));
-            NativeModules.BeaconBridge.sendResponse(publicKey);
+            NativeModules.BeaconBridge.sendResponse(publicKey, address);
         } catch (e) {
             console.log('Failed to authorize');
             dispatch(setBeaconLoading());

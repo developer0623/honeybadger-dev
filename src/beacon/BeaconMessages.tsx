@@ -26,7 +26,7 @@ const BeaconMessages = ({navigation}: NavigationProps) => {
             NativeModules.BeaconBridge,
         );
 
-        BeaconEmmiter.addListener('onMessage', response => {
+        const messageListener = BeaconEmmiter.addListener('onMessage', response => {
             try {
                 const beaconMessage = JSON.parse(response);
                 console.log('BEACON_MESSAGE', beaconMessage);
@@ -51,7 +51,7 @@ const BeaconMessages = ({navigation}: NavigationProps) => {
             }
         });
 
-        BeaconEmmiter.addListener('onSuccess', response => {
+        const successListener = BeaconEmmiter.addListener('onSuccess', response => {
             try {
                 if (response.type === BeaconSuccessTypes.START_BEACON) {
                     dispatch(setBeaconStatus(true));
@@ -94,7 +94,7 @@ const BeaconMessages = ({navigation}: NavigationProps) => {
             }
         });
 
-        BeaconEmmiter.addListener('onError', response => {
+        const errorListener = BeaconEmmiter.addListener('onError', response => {
             try {
                 console.log('BEACON_ERROR', response);
                 dispatch(setBeaconLoading());
@@ -112,6 +112,11 @@ const BeaconMessages = ({navigation}: NavigationProps) => {
             console.log('Failed to init BeaconBridge', error);
             return;
         }
+        return () => {
+            messageListener.remove();
+            successListener.remove();
+            errorListener.remove();
+          };
     }, [dispatch, navigation]);
 
     return null;

@@ -169,8 +169,9 @@ const Account = ({ navigation }: AccountProps) => {
         { title: 'Settings', screen: 'Settings', action: onMenuSelect }
     ];
 
-    const menuItems =
-        Platform.OS === 'ios' ? [...beaconItems, ...commonItems] : commonItems;
+    // const menuItems =
+    //     Platform.OS === 'ios' ? [...beaconItems, ...commonItems] : commonItems;
+    const menuItems = [...beaconItems, ...commonItems];
 
     const navigateToSecurity = () => {
         navigation.navigate('SecurityLevel');
@@ -180,9 +181,10 @@ const Account = ({ navigation }: AccountProps) => {
         <Box style={styles.container}>
             <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <BgGradient style={styles.bg} />
-            {Platform.OS === 'ios' && (
+            <BeaconMessages navigation={navigation} route={undefined} />
+            {/* {Platform.OS === 'ios' && (
                 <BeaconMessages navigation={navigation} route={undefined} />
-            )}
+            )} */}
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View>
                     <View style={styles.account}>

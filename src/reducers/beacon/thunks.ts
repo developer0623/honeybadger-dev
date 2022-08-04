@@ -163,7 +163,7 @@ export const beaconSendOperations =
                     result.operationGroupID,
                 );
 
-                beaconNotifyOperation(clearedOperationId);
+                beaconNotifyOperation(clearedOperationId, publicKeyHash);
 
                 dispatch(
                     setMessage(
@@ -185,6 +185,6 @@ export const beaconNotifyCancel = () => {
     NativeModules.BeaconBridge.sendError(BeaconErrorTypes.ABORTED_ERROR)
 };
 
-export const beaconNotifyOperation = (operationHash: string) => {
-    NativeModules.BeaconBridge.sendResponse(operationHash);
+export const beaconNotifyOperation = (operationHash: string, publicKeyHash: string) => {
+    NativeModules.BeaconBridge.sendResponse(operationHash, publicKeyHash);
 };
