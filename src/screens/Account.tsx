@@ -157,9 +157,9 @@ const Account = ({ navigation }: AccountProps) => {
         <Center style={styles.container}>
             <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <BgGradient style={styles.bg} />
-            {/* {Platform.OS === 'ios' && (
+             {Platform.OS === 'ios' && (
                 <BeaconMessages navigation={navigation} route={undefined} />
-            )} */}
+            )} 
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View>
                     <View style={styles.account}>

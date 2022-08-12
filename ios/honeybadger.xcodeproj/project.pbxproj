@@ -14,6 +14,13 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-honeybadger-honeybadgerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-honeybadger-honeybadgerTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		845FBBD82898A0FE0015D7C9 /* BeaconBlockchainSubstrate in Frameworks */ = {isa = PBXBuildFile; productRef = 845FBBD72898A0FE0015D7C9 /* BeaconBlockchainSubstrate */; };
+		845FBBDA2898A0FE0015D7C9 /* BeaconBlockchainTezos in Frameworks */ = {isa = PBXBuildFile; productRef = 845FBBD92898A0FE0015D7C9 /* BeaconBlockchainTezos */; };
+		845FBBDC2898A0FE0015D7C9 /* BeaconClientWallet in Frameworks */ = {isa = PBXBuildFile; productRef = 845FBBDB2898A0FE0015D7C9 /* BeaconClientWallet */; };
+		845FBBDE2898A0FE0015D7C9 /* BeaconCore in Frameworks */ = {isa = PBXBuildFile; productRef = 845FBBDD2898A0FE0015D7C9 /* BeaconCore */; };
+		845FBBE02898A0FE0015D7C9 /* BeaconTransportP2PMatrix in Frameworks */ = {isa = PBXBuildFile; productRef = 845FBBDF2898A0FE0015D7C9 /* BeaconTransportP2PMatrix */; };
+		845FBBE32898A61B0015D7C9 /* BeaconBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845FBBE22898A61B0015D7C9 /* BeaconBridge.swift */; };
+		845FBBE52898A72B0015D7C9 /* BeaconBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 845FBBE42898A72B0015D7C9 /* BeaconBridge.m */; };
 		D7C6D9F8287DEB13001700BF /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7C6D9F7287DEB13001700BF /* Roboto-Light.ttf */; };
 		D7C6DA01287DEB5D001700BF /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7C6D9FB287DEB5D001700BF /* Roboto-Bold.ttf */; };
 		D7C6DA02287DEB5D001700BF /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7C6D9FC287DEB5D001700BF /* Roboto-Regular.ttf */; };
@@ -55,6 +62,9 @@
 		5E10112FCDB242B4BE55FBD4 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		644117CFF02B440C81CD89C0 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = honeybadger/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		845FBBE12898A61A0015D7C9 /* honeybadger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "honeybadger-Bridging-Header.h"; sourceTree = "<group>"; };
+		845FBBE22898A61B0015D7C9 /* BeaconBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconBridge.swift; sourceTree = "<group>"; };
+		845FBBE42898A72B0015D7C9 /* BeaconBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeaconBridge.m; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-honeybadger-honeybadgerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-honeybadger-honeybadgerTests.release.xcconfig"; path = "Target Support Files/Pods-honeybadger-honeybadgerTests/Pods-honeybadger-honeybadgerTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F614E6A98394073A79426C0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		AE0E5C427D504E0FB1DEEE36 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -88,6 +98,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845FBBDA2898A0FE0015D7C9 /* BeaconBlockchainTezos in Frameworks */,
+				845FBBD82898A0FE0015D7C9 /* BeaconBlockchainSubstrate in Frameworks */,
+				845FBBE02898A0FE0015D7C9 /* BeaconTransportP2PMatrix in Frameworks */,
+				845FBBDC2898A0FE0015D7C9 /* BeaconClientWallet in Frameworks */,
+				845FBBDE2898A0FE0015D7C9 /* BeaconCore in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-honeybadger.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,6 +183,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				845FBBE42898A72B0015D7C9 /* BeaconBridge.m */,
+				845FBBE22898A61B0015D7C9 /* BeaconBridge.swift */,
 				D7C6D9F7287DEB13001700BF /* Roboto-Light.ttf */,
 				D7C6D9FE287DEB5D001700BF /* Galleon-Mobile.ttf */,
 				D7C6D9FB287DEB5D001700BF /* Roboto-Bold.ttf */,
@@ -182,6 +199,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				2405536C8BC54A64A307AF91 /* Resources */,
+				845FBBE12898A61A0015D7C9 /* honeybadger-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -250,6 +268,13 @@
 			dependencies = (
 			);
 			name = honeybadger;
+			packageProductDependencies = (
+				845FBBD72898A0FE0015D7C9 /* BeaconBlockchainSubstrate */,
+				845FBBD92898A0FE0015D7C9 /* BeaconBlockchainTezos */,
+				845FBBDB2898A0FE0015D7C9 /* BeaconClientWallet */,
+				845FBBDD2898A0FE0015D7C9 /* BeaconCore */,
+				845FBBDF2898A0FE0015D7C9 /* BeaconTransportP2PMatrix */,
+			);
 			productName = honeybadger;
 			productReference = 13B07F961A680F5B00A75B9A /* honeybadger.app */;
 			productType = "com.apple.product-type.application";
@@ -267,7 +292,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -280,6 +305,9 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				845FBBD62898A0FE0015D7C9 /* XCRemoteSwiftPackageReference "beacon-ios-sdk" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -478,6 +506,8 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				845FBBE52898A72B0015D7C9 /* BeaconBridge.m in Sources */,
+				845FBBE32898A61B0015D7C9 /* BeaconBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-honeybadger-honeybadgerTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -523,6 +554,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-honeybadger-honeybadgerTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = honeybadgerTests/Info.plist;
@@ -552,6 +584,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = honeybadger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -563,6 +596,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = honeybadger;
+				SWIFT_OBJC_BRIDGING_HEADER = "honeybadger-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -577,6 +611,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = honeybadger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,6 +623,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = honeybadger;
+				SWIFT_OBJC_BRIDGING_HEADER = "honeybadger-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -642,7 +678,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -706,7 +742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -759,6 +795,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		845FBBD62898A0FE0015D7C9 /* XCRemoteSwiftPackageReference "beacon-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airgap-it/beacon-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		845FBBD72898A0FE0015D7C9 /* BeaconBlockchainSubstrate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 845FBBD62898A0FE0015D7C9 /* XCRemoteSwiftPackageReference "beacon-ios-sdk" */;
+			productName = BeaconBlockchainSubstrate;
+		};
+		845FBBD92898A0FE0015D7C9 /* BeaconBlockchainTezos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 845FBBD62898A0FE0015D7C9 /* XCRemoteSwiftPackageReference "beacon-ios-sdk" */;
+			productName = BeaconBlockchainTezos;
+		};
+		845FBBDB2898A0FE0015D7C9 /* BeaconClientWallet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 845FBBD62898A0FE0015D7C9 /* XCRemoteSwiftPackageReference "beacon-ios-sdk" */;
+			productName = BeaconClientWallet;
+		};
+		845FBBDD2898A0FE0015D7C9 /* BeaconCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 845FBBD62898A0FE0015D7C9 /* XCRemoteSwiftPackageReference "beacon-ios-sdk" */;
+			productName = BeaconCore;
+		};
+		845FBBDF2898A0FE0015D7C9 /* BeaconTransportP2PMatrix */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 845FBBD62898A0FE0015D7C9 /* XCRemoteSwiftPackageReference "beacon-ios-sdk" */;
+			productName = BeaconTransportP2PMatrix;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
