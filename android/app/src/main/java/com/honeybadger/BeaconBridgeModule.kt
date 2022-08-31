@@ -36,10 +36,11 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import kotlinx.serialization.Serializable
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
-
 
 data class Param(val type: String= "", val data: String= "")
 
@@ -51,18 +52,19 @@ class BeaconBridgeModule(reactContext: ReactApplicationContext) : ReactContextBa
     private var coroutineScope = CoroutineScope(Dispatchers.Main)
 
     private fun sendEvent(reactContext: ReactContext, eventName: String, params: Param) {
+        val stringParam = Gson().toJson(params)
         reactContext
         .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
-        .emit(eventName, params)
+        .emit(eventName, stringParam)
     }   
 
     @ReactMethod fun startBeacon() {
         coroutineScope.launch {
             try {
                 createWalletClient()
-                 listenForRequests()
-//                 val param = Param("start_beacon", "success");
-//                 sendEvent(rContext, "onSuccess", param)
+                listenForRequests()
+                val param = Param("start_beacon", "success")
+                sendEvent(rContext, "onSuccess", param)
             } catch (e: Exception) {
                 val error = Json.encodeToString(e.message)
                 Log.d("start",  error)
@@ -245,5 +247,9 @@ class BeaconBridgeModule(reactContext: ReactApplicationContext) : ReactContextBa
 //    override fun getLifecycle(): Lifecycle {
 //        TODO("Not yet implemented")
 //    }
+}
+
+private fun Any.observe(beaconBridgeModule: BeaconBridgeModule, function: (t: Result<BeaconRequest>) -> Unit) {
+
 }
 

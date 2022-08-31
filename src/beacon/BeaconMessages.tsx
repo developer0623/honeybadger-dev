@@ -51,9 +51,11 @@ const BeaconMessages = ({navigation}: NavigationProps) => {
             }
         });
 
-        const successListener = BeaconEmmiter.addListener('onSuccess', response => {
+        const successListener = BeaconEmmiter.addListener('onSuccess', result => {
             try {
+                const response = JSON.parse(result);
                 if (response.type === BeaconSuccessTypes.START_BEACON) {
+                    console.log('ttttttttttt', response);
                     dispatch(setBeaconStatus(true));
                     NativeModules.BeaconBridge.getPermissions();
                     NativeModules.BeaconBridge.getPeers();
@@ -94,8 +96,9 @@ const BeaconMessages = ({navigation}: NavigationProps) => {
             }
         });
 
-        const errorListener = BeaconEmmiter.addListener('onError', response => {
+        const errorListener = BeaconEmmiter.addListener('onError', result => {
             try {
+                const response = JSON.parse(result);
                 console.log('BEACON_ERROR', response);
                 dispatch(setBeaconLoading());
 

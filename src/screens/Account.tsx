@@ -76,7 +76,7 @@ const Account = ({ navigation }: AccountProps) => {
                 );
                 if (data) {
                     data = JSON.parse(data.password);
-                    console.log("account data=>", data)
+                    console.log('account data=>', data);
                     if (data.securitySetup && data.phraseBackedUp) {
                         setSecurityLevel('2');
                     } else if (data.securitySetup || data.phraseBackedUp) {
