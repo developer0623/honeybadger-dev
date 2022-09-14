@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         marginBottom: 50
     },
     list: {
-        width: '90%',
+        width: '80%',
         alignSelf: 'center',
     },
     listItem: {

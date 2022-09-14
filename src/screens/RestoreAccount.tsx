@@ -164,11 +164,11 @@ const RestoreAccount = ({navigation}: AccountProps) => {
                             ))}
                         </View>
                         <View style={{flexDirection: 'row'}}>
-                            <Button style={styles.btn} transparent onPress={() => setInfoModalVisible(false)}>
+                            <Button style={styles.btn} variant="unstyled" onPress={() => setInfoModalVisible(false)}>
                                 <Text style={styles.cancelText}>Cancel</Text>
                             </Button>
                             <Button style={styles.modalBtn} onPress={recoverAccount}>
-                                <Text>Proceed</Text>
+                                <Text style={{color: 'white'}}>Proceed</Text>
                             </Button>
                         </View>
                     </View>
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
         borderRadius: 26,
         padding: 28,
         alignItems: "center",
-        width: '80%',
+        width: '90%',
         elevation: 5
     },
     openButton: {

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useReducer } from 'react';
-import { StyleSheet, View, TextInput, KeyboardAvoidingView, Platform, SafeAreaView, Image } from "react-native";
+import { StyleSheet, View, TextInput, ScrollView, KeyboardAvoidingView, Platform, SafeAreaView, Image } from "react-native";
 import { Box, Container, Center, Text } from 'native-base';
 
 import { colors } from '../../theme';
@@ -140,17 +140,17 @@ const PinCode = (props: any) => {
     }
 
     return (
-        <Box style={styles.containerWrapper}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps={'handled'}>
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
-                <View>
-                    {
-                        props.allowChange &&
-                        <View style={styles.containerForgotPin}>
-                            <Text onPress={() => props.redirectToResetPin()} style={styles.forgotPassword}>Forgot Pin?</Text>
-                        </View>
-                    }
-                </View>
-                <SafeAreaView style={styles.areaContainer}>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <View>
+                        {
+                            props.allowChange &&
+                            <View style={styles.containerForgotPin}>
+                                <Text onPress={() => props.redirectToResetPin()} style={styles.forgotPassword}>Forgot Pin?</Text>
+                            </View>
+                        }
+                    </View>
                     <View style={styles.container}>
                         <View style={styles.logo}>
                             <Logo />
@@ -275,13 +275,13 @@ const PinCode = (props: any) => {
                         {
                             props.isSkipAllowed &&
                             <View>
-                                <Text style={{ marginTop: 50 }} onPress={props.skipBiometric}>Skip</Text>
+                                <Text style={{ marginVertical: 30 }} onPress={props.skipBiometric}>Skip</Text>
                             </View>
                         }
                     </View>
                 </SafeAreaView>
             </KeyboardAvoidingView>
-        </Box>
+        </ScrollView>
     )
 }
 
@@ -302,13 +302,14 @@ const styles = StyleSheet.create({
         paddingRight: 35
     },
     areaContainer: {
-        flex: 1
+        flex: 1,
     },
     containerFlex: {
         alignItems: 'center',
         flexDirection: 'row'
     },
     title: {
+        marginTop: 20,
         fontSize: 18,
         marginBottom: 40,
     },
@@ -341,6 +342,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     logo: {
+        marginTop: 50,
         height: '40%',
         alignItems: 'center',
         justifyContent: 'center',

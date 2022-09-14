@@ -124,7 +124,7 @@ const Delegation = ({onDelegate}: DelegationProps) => {
                                     Currently Delegating
                                 </Text>
                                 <Button
-                                    transparent
+                                    variant="unstyled"
                                     style={styles.edit}
                                     onPress={onDelegate}>
                                     <CustomIcon name="Edit" color="#4b4b4b" />

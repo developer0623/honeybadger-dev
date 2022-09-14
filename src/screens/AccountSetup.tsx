@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { AccountSettingsProps } from './types';
-import { Box, Container, Center } from 'native-base';
+import { Box } from 'native-base';
 import { StatusBar, StyleSheet, Alert } from "react-native";
 import * as Keychain from 'react-native-keychain';
 
@@ -84,20 +84,18 @@ const AccountSetup = ({ navigation, route }: AccountSettingsProps) => {
                     :
                     <CustomHeader title="Enable App Lock" />
             }
-            <Center>
-                {
-                    step === "PIN" &&
-                    <PinCode key="pin" text='Please Choose a 6 Digit Pin' handlePin={handlePin} isResetNeeded={true} isSkipAllowed={skip} skipBiometric={skipBiometric} />
-                }
-                {
-                    step === "CONFIRM_PIN" &&
-                    <PinCode key="confirm-pin" text='Please Confirm Your Pin' handlePin={handleConfirmPin} isResetNeeded={true} isSkipAllowed={false} />
-                }
-                {
-                    step === "ENABLE_BIOMETRIC" &&
-                    <EnableBiometric enableBiometric={setBiometric} skipBiometric={skipBiometric} />
-                }
-            </Center>
+            {
+                step === "PIN" &&
+                <PinCode key="pin" text='Please Choose a 6 Digit Pin' handlePin={handlePin} isResetNeeded={true} isSkipAllowed={skip} skipBiometric={skipBiometric} />
+            }
+            {
+                step === "CONFIRM_PIN" &&
+                <PinCode key="confirm-pin" text='Please Confirm Your Pin' handlePin={handleConfirmPin} isResetNeeded={true} isSkipAllowed={false} />
+            }
+            {
+                step === "ENABLE_BIOMETRIC" &&
+                <EnableBiometric enableBiometric={setBiometric} skipBiometric={skipBiometric} />
+            }
         </Box>
     )
 }

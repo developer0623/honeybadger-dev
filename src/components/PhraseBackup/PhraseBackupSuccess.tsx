@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Text, View, Button } from 'native-base';
+import { Box, Text, View, Button } from 'native-base';
 import { StyleSheet } from 'react-native';
 
 import Checkmark from '../../../assets/checkmark.svg';

@@ -1,22 +1,22 @@
-import React, {useState, useRef} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {StyleSheet, Platform, TextInput, KeyboardAvoidingView} from 'react-native';
-import {Container, Text, Input, View, Button} from 'native-base';
+import React, { useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { StyleSheet, Platform, TextInput, KeyboardAvoidingView } from 'react-native';
+import { Container, Text, Input, View, Button, Box, Center, HStack } from 'native-base';
 
 import EnterAddressErrors from '../components/EnterAddress/EnterAddressErrors';
 
 import constants from '../utils/constants.json';
-import {setSendAmount} from '../reducers/app/actions';
+import { setSendAmount } from '../reducers/app/actions';
 import CustomHeader from '../components/CustomHeader';
 import CustomIcon from '../components/CustomIcon';
-import {truncateHash} from '../utils/general';
-import {formatAmount, utezToTez} from '../utils/currency';
-import {colors} from '../theme';
+import { truncateHash } from '../utils/general';
+import { formatAmount, utezToTez } from '../utils/currency';
+import { colors } from '../theme';
 
-import {State} from '../reducers/types';
-import {SendAmountProps} from './types';
+import { State } from '../reducers/types';
+import { SendAmountProps } from './types';
 
-const SendAmount = ({navigation}: SendAmountProps) => {
+const SendAmount = ({ navigation }: SendAmountProps) => {
     const dispatch = useDispatch();
     const address = useSelector((state: State) => state.app.sendAddress);
     const balance = useSelector((state: State) => state.app.balance);
@@ -84,7 +84,7 @@ const SendAmount = ({navigation}: SendAmountProps) => {
     };
 
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <CustomHeader
                 title="Enter Amount"
                 onBack={() => navigation.goBack()}
@@ -102,33 +102,31 @@ const SendAmount = ({navigation}: SendAmountProps) => {
                         ref={textInput}
                     />
                 </View>
-                )}
-                {Platform.OS === 'ios' && (
-                    <Input
-                        autoFocus
-                        style={styles.input}
-                        value={amount}
-                        onChangeText={onChange}
-                        keyboardType="numeric"
-                    />
-                )}
-            <View style={styles.amount}>
-                <Text style={styles.typo1}>
-                    {formatAmount(Number(amount) * 1000000)}
-                </Text>
+            )}
+            {Platform.OS === 'ios' && (
+                <Input
+                    autoFocus
+                    style={styles.input}
+                    value={amount}
+                    onChangeText={onChange}
+                    keyboardType="numeric"
+                />
+            )}
+            <HStack justifyContent="center" alignItems="center">
+                <Text fontSize="3xl">{formatAmount(Number(amount) * 1000000)}</Text>
                 <CustomIcon name="XTZ" size={30} color="#1a1919" />
-            </View>
+            </HStack>
             <View style={styles.errorContainer}>
                 <EnterAddressErrors isVisible={isError} title="Invalid Amount" message={errorMessage} />
             </View>
-            {/*<View style={styles.currency}>
-                <Text style={styles.typo2}>$</Text>
-                <Text style={styles.typo2}>{currency}</Text>
-            </View>*/}
+            {/* <HStack justifyContent="center" alignItems="center">
+                <Text fontSize="3xl">$</Text>
+                <Text fontSize="3xl">{currency}</Text>                
+            </HStack> */}
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
                 <View style={styles.details}>
                     <View style={styles.row}>
-                        {/*<Text style={[styles.useMax, styles.typo3]}>Use Max</Text>*/}
+                        <Text style={[styles.useMax, styles.typo3]}>Use Max</Text>
                         <View style={[styles.row, styles.available]}>
                             <Text style={[styles.availableText, styles.typo4]}>
                                 Available
@@ -155,13 +153,14 @@ const SendAmount = ({navigation}: SendAmountProps) => {
                     </Button>
                 </View>
             </KeyboardAvoidingView>
-        </Container>
+        </Box>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.bg,
+        height: '100%'
     },
     title: {
         marginTop: 5,
@@ -171,13 +170,16 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     amount: {
-        marginTop: -230,
+        // marginTop: -230,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
+        backgroundColor: 'red',
+        height: 80,
+        paddingVertical: 0
     },
     input: {
-        opacity:0
+        opacity: 0
     },
     currency: {
         marginTop: 10,
@@ -257,6 +259,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: 0.85,
         textTransform: 'capitalize',
+        color: 'white'
     },
     errorContainer: {
         height: 70

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import { Box, Container, Text, View, Button } from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { Box, Container, Center, Text, View, Button } from 'native-base';
 import { StyleSheet } from 'react-native';
 import TouchID from "react-native-touch-id";
 
@@ -20,13 +20,13 @@ const EnableBiometric = (props: any) => {
         async function load() {
             try {
                 await TouchID.isSupported().then((biometryType: any) => {
-                    if(biometryType) {
+                    if (biometryType) {
                         setBiometricSupported(true);
                     } else {
                         setBiometricSupported(false);
                     }
                 })
-            } catch(error) {
+            } catch (error) {
                 setBiometricSupported(false);
             }
         }
@@ -35,40 +35,42 @@ const EnableBiometric = (props: any) => {
     }, [])
 
     return (
-        <Box>
-            <View style={styles.mainContainer}>
-                <View style={styles.container}>
-                    <View style={styles.icon}>
-                        <Checkmark />
+        <Center>
+            <Box>
+                <View style={styles.mainContainer}>
+                    <View style={styles.container}>
+                        <View style={styles.icon}>
+                            <Checkmark />
+                        </View>
+                        {
+                            isBiometricEnabled ?
+                                <Text style={styles.title}>App Lock Enabled with Biometrics &amp; Pin</Text>
+                                :
+                                <Text style={styles.title}>App Lock Enabled with a Pin</Text>
+                        }
+                        <Text style={styles.paragraph}>Every extra protective measure you take matters. It's all part of being a responsible crypto owner.</Text>
                     </View>
-                    { 
-                        isBiometricEnabled ?
-                        <Text style={styles.title}>App Lock Enabled with Biometrics &amp; Pin</Text>
-                        :
-                        <Text style={styles.title}>App Lock Enabled with a Pin</Text>
+                    {
+                        !isSuccess && isBiometricSupported &&
+                        <React.Fragment>
+                            <Button style={styles.btn} onPress={handleBiometric}>
+                                <Text style={styles.typo3}>Enable Biometrics</Text>
+                            </Button>
+                            <Text style={{ marginBottom: 40 }} onPress={props.skipBiometric}>Go to wallet</Text>
+                        </React.Fragment>
                     }
-                    <Text style={styles.paragraph}>Every extra protective measure you take matters. It's all part of being a responsible crypto owner.</Text>
+                    {
+                        (isSuccess || !isBiometricSupported) &&
+                        <React.Fragment>
+                            <Button style={styles.btn} onPress={props.skipBiometric}>
+                                <Text style={styles.typo3}>Go to wallet</Text>
+                            </Button>
+                            <Text style={{ marginBottom: 40 }}></Text>
+                        </React.Fragment>
+                    }
                 </View>
-                {
-                    !isSuccess && isBiometricSupported &&
-                    <React.Fragment>
-                        <Button style={styles.btn} onPress={handleBiometric}>
-                            <Text style={styles.typo3}>Enable Biometrics</Text>
-                        </Button>
-                        <Text style={{marginBottom: 40}} onPress={props.skipBiometric}>Go to wallet</Text>
-                    </React.Fragment>
-                }
-                {
-                    (isSuccess ||  !isBiometricSupported) &&
-                    <React.Fragment>
-                        <Button style={styles.btn} onPress={props.skipBiometric}>
-                            <Text style={styles.typo3}>Go to wallet</Text>
-                        </Button>
-                        <Text style={{marginBottom: 40}}></Text>
-                    </React.Fragment>
-                }
-            </View>
-        </Box>
+            </Box>
+        </Center>
     );
 }
 
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
         shadowColor: 'rgba(31, 31, 31, 0.77)',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.8,
-        shadowRadius: 2,  
+        shadowRadius: 2,
         elevation: 5
         //boxShadow: 'rgba(31, 31, 31, 0.77) 1px 7px 33px -24px'
     },

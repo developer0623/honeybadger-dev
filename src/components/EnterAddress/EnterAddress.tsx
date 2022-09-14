@@ -1,6 +1,6 @@
-import React, {useState, FunctionComponent} from 'react';
-import {StyleSheet, Clipboard} from 'react-native';
-import {Text, View, Input, Item} from 'native-base';
+import React, { useState, FunctionComponent } from 'react';
+import { StyleSheet, Clipboard, ScrollView, SafeAreaView, Platform } from 'react-native';
+import { Box, Text, View, Input, KeyboardAvoidingView } from 'native-base';
 
 import CustomHeader from '../CustomHeader';
 import EnterAddressCamera from './EnterAddressCamera';
@@ -54,7 +54,7 @@ const EnterAddress: FunctionComponent<EnterAddressProps> = ({
         onAddressTextChange(copiedMessage);
     };
     const onScanQrCode = () => setShowCamera(true);
-    const onBarcodeRecognized = ({data}: {data: string}) => {
+    const onBarcodeRecognized = ({ data }: { data: string }) => {
         if (data && data.length) {
             onAddressTextChange(data);
             setShowCamera(false);
@@ -70,32 +70,39 @@ const EnterAddress: FunctionComponent<EnterAddressProps> = ({
             {!showCamera && (
                 <>
                     <CustomHeader title={headerTitle} onBack={goBack} />
-                    <Text style={styles.title}>{addressTitle}</Text>
-                    <View style={styles.address}>
-                        <Item regular style={styles.item}>
-                            <Input
-                                placeholder="e.g tz1…"
-                                style={styles.input}
-                                onChangeText={onAddressTextChange}
-                                value={address}
-                                autoCompleteType="off"
-                                autoCorrect={false}
-                                autoCapitalize="none"
-                                returnKeyType="next"
-                            />
-                        </Item>
-                    </View>
-                    {children}
-                    <EnterAddressErrors
-                        isVisible={isError}
-                        title="Invalid Address"
-                        message={errorMessage}
-                    />
-                    <EnterAddressButtons
-                        isVisible={!isValid}
-                        onPasteAddress={onPasteAddress}
-                        onScanQrCode={onScanQrCode}
-                    />
+                    <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps={'handled'}>
+                        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
+                            <SafeAreaView style={{ flex: 1 }}>
+                                <Text style={styles.title}>{addressTitle}</Text>
+                                <View style={styles.address}>
+                                    <Box alignItems="center" style={styles.item}>
+                                        <Input
+                                            placeholder="e.g tz1…"
+                                            style={styles.input}
+                                            onChangeText={onAddressTextChange}
+                                            value={address}
+                                            autoCompleteType="off"
+                                            autoCorrect={false}
+                                            autoCapitalize="none"
+                                            returnKeyType="next"
+                                            variant="unstyled"
+                                        />
+                                    </Box>
+                                </View>
+                                {children}
+                                <EnterAddressErrors
+                                    isVisible={isError}
+                                    title="Invalid Address"
+                                    message={errorMessage}
+                                />
+                                <EnterAddressButtons
+                                    isVisible={!isValid}
+                                    onPasteAddress={onPasteAddress}
+                                    onScanQrCode={onScanQrCode}
+                                />
+                            </SafeAreaView>
+                        </KeyboardAvoidingView>
+                    </ScrollView>
                 </>
             )}
         </>

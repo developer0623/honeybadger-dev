@@ -32,7 +32,7 @@ const SeedInput = (props: any) => {
                             <TextInput style={styles.inputField} placeholder="Default (44’/1792’/0/0/0’)" onChangeText={(text): any => setDerivation(text) }/>
                         */}
                         <Button style={styles.btn} onPress={handleOptions}>
-                            <Text>Continue</Text>
+                            <Text style={{color: 'white'}}>Continue</Text>
                         </Button>
                     </View>
                 </SafeAreaView>

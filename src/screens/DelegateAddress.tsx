@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Linking, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {Container, Text, View, Button} from 'native-base';
+import {Container, Box, Text, View, Button} from 'native-base';
 import Modal from 'react-native-modal';
 
 import {setDelegateAddress} from '../reducers/app/actions';
@@ -101,7 +101,7 @@ const DelegateAddress = ({navigation}: DelegateAddressProps) => {
     }, []);
 
     return (
-        <Container style={styles.container}>
+        <Box style={styles.container}>
             <EnterAddress
                 headerTitle={headerTitle}
                 addressTitle={addressTitle}
@@ -216,14 +216,18 @@ const DelegateAddress = ({navigation}: DelegateAddressProps) => {
                             />
                         </View>
                         <View>
-                            <Button
-                                transparent
+                            <Button variant="unstyled" 
                                 style={
                                     modalPage === 1
                                         ? [styles.btn, styles.btnEnd]
                                         : styles.btn
                                 }
-                                onPress={goNextModalPage}>
+                                onPress={goNextModalPage}
+                                endIcon={
+                                    modalPage === 0 &&
+                                    <CustomIcon name="Caret-Left" size={10} />
+                                }
+                            >
                                 <Text
                                     style={[
                                         styles.btnNext,
@@ -234,15 +238,12 @@ const DelegateAddress = ({navigation}: DelegateAddressProps) => {
                                     ]}>
                                     {modal[modalPage].btn}
                                 </Text>
-                                {modalPage === 0 && (
-                                    <CustomIcon name="Caret-Left" size={10} />
-                                )}
                             </Button>
                         </View>
                     </View>
                 </View>
             </Modal>
-        </Container>
+        </Box>
     );
 };
 
@@ -270,6 +271,7 @@ const styles = StyleSheet.create({
     },
     container: {
         backgroundColor: colors.bg,
+        height: '100%'
     },
     modal: {
         margin: 0,
@@ -296,7 +298,8 @@ const styles = StyleSheet.create({
     },
     actions: {
         width: '100%',
-        marginTop: 'auto',
+        // marginTop: 'auto',
+        marginTop: 5,
         marginBottom: 50,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -382,6 +385,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '300',
         lineHeight: 30,
+        color: 'white'
     },
     typo3: {
         fontFamily: 'Roboto-Regular',

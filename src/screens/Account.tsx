@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import { useIsFocused } from "@react-navigation/native";
 import {
     StatusBar,
     StyleSheet,
-    Image,
     TouchableOpacity,
     ScrollView,
     Platform,
 } from 'react-native';
-import { Box, Button, Text, View } from 'native-base';
+import { Center, Button, Text, View } from 'native-base';
 import * as Keychain from 'react-native-keychain';
 import Modal from 'react-native-modal';
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,12 +35,10 @@ import { formatAmount } from '../utils/currency';
 import { State } from '../reducers/types';
 import { AccountProps } from './types';
 import Fish from '../../assets/fish.svg';
-import Circle from '../../assets/circle.svg';
 import RightArrow from '../../assets/right-arrow.svg';
 import Salmon from '../../assets/salmon.svg';
 import BgGradient from '../../assets/bg-gradient.svg';
 import NFTIcon from '../../assets/nft.svg';
-import XTZIcon from '../../assets/xtz.svg';
 
 const Account = ({ navigation }: AccountProps) => {
     const dispatch = useDispatch();
@@ -66,6 +64,7 @@ const Account = ({ navigation }: AccountProps) => {
         }
         setTab(newTab);
     };
+    const isFocused = useIsFocused();
 
     useEffect(() => {
         async function load() {
@@ -76,7 +75,6 @@ const Account = ({ navigation }: AccountProps) => {
                 );
                 if (data) {
                     data = JSON.parse(data.password);
-                    console.log("account data=>", data)
                     if (data.securitySetup && data.phraseBackedUp) {
                         setSecurityLevel('2');
                     } else if (data.securitySetup || data.phraseBackedUp) {
@@ -105,28 +103,7 @@ const Account = ({ navigation }: AccountProps) => {
             }
         }
         load();
-        navigation.addListener('didFocus', async (payload: any) => {
-            try {
-                let data: any = await Keychain.getInternetCredentials(
-                    'securitySetup',
-                );
-                if (data) {
-                    data = JSON.parse(data.password);
-                    if (data.securitySetup && data.phraseBackedUp) {
-                        setSecurityLevel('2');
-                    } else if (data.securitySetup || data.phraseBackedUp) {
-                        setSecurityLevel('1');
-                    } else {
-                        setSecurityLevel('0');
-                    }
-                } else {
-                    setSecurityLevel('0');
-                }
-            } catch (error) {
-                // error
-            }
-        });
-    }, [navigation]);
+    }, [navigation, isFocused]);
 
     const onPress = (value: string) => {
         if (balance === 0 && value === 'SendAddress') {
@@ -177,12 +154,12 @@ const Account = ({ navigation }: AccountProps) => {
     };
 
     return (
-        <Box style={styles.container}>
+        <Center style={styles.container}>
             <StatusBar backgroundColor="#fcd104" barStyle='light-content' />
             <BgGradient style={styles.bg} />
-            {Platform.OS === 'ios' && (
+             {Platform.OS === 'ios' && (
                 <BeaconMessages navigation={navigation} route={undefined} />
-            )}
+            )} 
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View>
                     <View style={styles.account}>
@@ -239,14 +216,8 @@ const Account = ({ navigation }: AccountProps) => {
                             <Text fontSize="3xl" style={styles.typo2}>
                                 {formatAmount(balance)}
                             </Text>
-                            {/* <CustomIcon name="XTZ" size={30} color="#1a1919" /> */}
-                            <View style={styles.xtzIcon}>
-                                <XTZIcon />
-                            </View>
+                            <CustomIcon name="XTZ" size={30} color="#1a1919" />
                         </View>
-                        {/*<View style={styles.center}>
-                            <Text style={styles.typo3}>$0.00</Text>
-                        </View>*/}
                     </View>
                     <View style={styles.actions}>
                         <View style={styles.center}>
@@ -445,7 +416,7 @@ const Account = ({ navigation }: AccountProps) => {
                     </View>
                 </Modal>
             </ScrollView>
-        </Box>
+        </Center>
     );
 };
 
@@ -483,6 +454,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 26,
         borderTopRightRadius: 26,
         alignItems: 'center',
+        minWidth: '100%'
     },
     menu: {
         marginRight: 25,
